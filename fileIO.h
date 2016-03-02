@@ -9,18 +9,16 @@
 using namespace std;
 #endif // FILEIO_H_INCLUDED
 
-//Constants for theater dimensions
-const int CLM_NUMBER = 16, ROW_NUMBER = 10;
-
 //Author: Jacob
 void pause()
 {
+
 	system("PAUSE");
 	system("CLS");
 }
 
 //Author: Jacob
-void readInData(bool arr[ROW_NUMBER][CLM_NUMBER])
+void readInData(bool arr[ROWS][COLUMNS])
 {
     system("CLS");
     //Ask user to read file data or a new blank set of data
@@ -48,9 +46,9 @@ void readInData(bool arr[ROW_NUMBER][CLM_NUMBER])
         int tempInt;
 
         //Read contents of seating data file into bool array
-        for (int i = 0; i < CLM_NUMBER; i++)
+        for (int i = 0; i < COLUMNS; i++)
         {
-            for(int j = 0; j < ROW_NUMBER; j++)
+            for(int j = 0; j < ROWS; j++)
             {
                 getline(SeatingFile, tempStr, ',');
                 tempInt = atoi(tempStr.c_str());
@@ -101,9 +99,9 @@ void readInData(bool arr[ROW_NUMBER][CLM_NUMBER])
         cout << "Resetting all data values" << endl;
 
         //Fill seating chart with empty, default value
-        for (int i = 0; i < CLM_NUMBER; i++)
+        for (int i = 0; i < COLUMNS; i++)
         {
-            for(int j = 0; j < ROW_NUMBER; j++)
+            for(int j = 0; j < ROWS; j++)
             {
                 arr[j][i] = false;
             }
@@ -121,7 +119,7 @@ void readInData(bool arr[ROW_NUMBER][CLM_NUMBER])
 }
 
 //Author: Jacob
-void writeOutData(bool arr[ROW_NUMBER][CLM_NUMBER])
+void writeOutData(bool arr[ROWS][COLUMNS])
 {
     //Output seating data
     ofstream SeatingFile;
@@ -135,9 +133,9 @@ void writeOutData(bool arr[ROW_NUMBER][CLM_NUMBER])
     }
 
     //Write contents of bool array as 1's and 0's to file
-    for (int i = 0; i < CLM_NUMBER; i++)
+    for (int i = 0; i < COLUMNS; i++)
     {
-        for(int j = 0; j < ROW_NUMBER; j++)
+        for(int j = 0; j < ROWS; j++)
         {
             SeatingFile << arr[j][i] << ",";
         }

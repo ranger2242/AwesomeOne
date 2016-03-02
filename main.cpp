@@ -18,6 +18,7 @@ Date: 3/11/2016
 #include <ctime>
 #include <cctype>
 #include <cstring>
+#include <algorithm>
 #include "basiclib.h"
 
 using namespace std;
@@ -59,6 +60,8 @@ void pause();
 void readInData();
 //Outputs Seating Chart data and sales revenue data to .txt files
 void writeOutData(bool arr[COLUMNS][ROWS]);
+//Outputs seating chart report to console or file
+void displaySeatingChart(ostream & str, bool arr[COLUMNS][ROWS]);
 
 //Author: Jacob
 void pause()
@@ -203,7 +206,7 @@ void writeOutData(bool arr[COLUMNS][ROWS])
         pause();
     }
 
-    //displaySeatingChart(SeatingReport);
+    displaySeatingChart(SeatingReport, arr[COLUMNS][ROWS]);
 
     SeatingReport.close();
 

@@ -21,8 +21,9 @@ Date: 3/11/2016
 #include <cctype>
 #include <cstring>
 #include <algorithm>
+#include <stdio.h>
+#include <windows.h>
 #include "basiclib.h"
-#include "fileIO.h"
 
 using namespace std;
 
@@ -30,6 +31,9 @@ using namespace std;
 const int COLUMNS = 16, ROWS = 10;
 //Constants for theater seating prices
 const float LOWPRICE = 25.00, MEDIUMPRICE = 35.00, HIGHPRICE = 50.00;
+
+//Included here so it can use the above constants
+#include "fileIO.h"
 
 //Author: Jacob
 //Patron structure to hold ID, name, and number
@@ -57,11 +61,6 @@ struct Seat
     }
 };
 
-
-//Reads in Seating Chart data and sales revenue data from .txt files
-void readInData();
-//Outputs Seating Chart data and sales revenue data to .txt files
-void writeOutData(bool arr[ROWS][COLUMNS]);
 //Outputs seating chart report to console or file
 //void displaySeatingChart(ostream & str, bool arr[ROWS][CLM]);
 
@@ -90,6 +89,7 @@ void displaySeatingChart(ostream & str,bool** arr){
 
 
 //////////////////////////////////////////////////////////////////////////////
+//Author: Celeste
 void PhoneNumberFormatter(string PhoneNumber)
 {
     int count;
@@ -241,7 +241,6 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
 	cin >> choice;
 
-
 	while(choice!='#'){
 		switch(choice)
 		{
@@ -282,7 +281,32 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
 
 }
+
+//Author: Jacob
+//Displays awesome logo for the team at start of program
+void displayLogo()
+{
+        sep(cout);
+        Sleep(750);
+        cout << "    _______                                                                    " << endl;
+        Sleep(750);
+        cout << "   |__   __|                       /\\                                          " << endl;
+        Sleep(750);
+        cout << "      | | ___  __ _ _ __ ___      /  \\__      _____  ___  ___  _ __ ___   ___" << endl;
+        Sleep(750);
+        cout << "      | |/ _ \\/ _` | '_ ` _ \\    / /\\ \\ \\ /\\ / / _ \\/ __|/ _ \\| '_ ` _ \\ / _ \\ " << endl;
+        Sleep(750);
+        cout << "      | |  __/ (_| | | | | | |  / ____ \\ V  V /  __/\\__ \\ (_) | | | | | |  __/" << endl;
+        Sleep(750);
+        cout << "      |_|\\___|\\__,_|_| |_| |_| /_/    \\_\\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___|\n\n" << endl;
+        Sleep(750);
+        sep(cout);
+}
 int main() {
+    //Display team logo of awesome
+    displayLogo();
+    pause();
+
 	cout<<"#";
 	bool **seatCheck=new bool *[COLUMNS];
 	for(int i=0; i < ROWS; i++){

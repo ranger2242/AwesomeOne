@@ -26,7 +26,7 @@ Date: 3/11/2016
 using namespace std;
 
 //Constants for theater dimensions
-const int ROWS = 16, COLUMNS = 10;
+const int COLUMNS = 16, ROWS = 10;
 //Constants for theater seating prices
 const float LOWPRICE = 25.00, MEDIUMPRICE = 35.00, HIGHPRICE = 50.00;
 
@@ -61,9 +61,9 @@ void pause();
 //Reads in Seating Chart data and sales revenue data from .txt files
 void readInData();
 //Outputs Seating Chart data and sales revenue data to .txt files
-void writeOutData(bool arr[COLUMNS][ROWS]);
+void writeOutData(bool arr[ROWS][COLUMNS]);
 //Outputs seating chart report to console or file
-void displaySeatingChart(ostream & str, bool arr[COLUMNS][ROWS]);
+//void displaySeatingChart(ostream & str, bool arr[ROWS][CLM]);
 
 //Author: Jacob
 void pause()
@@ -71,9 +71,9 @@ void pause()
 	system("PAUSE");
 	system("CLS");
 }
-
+/*
 //Author: Jacob
-void readInData(bool arr[COLUMNS][ROWS])
+void readInData(bool arr[ROWS][CLM])
 {
     system("CLS");
     //Ask user to read file data or a new blank set of data
@@ -101,9 +101,9 @@ void readInData(bool arr[COLUMNS][ROWS])
         int tempInt;
 
         //Read contents of seating data file into bool array
-        for (int i = 0; i < ROWS; i++)
+        for (int i = 0; i < CLM; i++)
         {
-            for(int j = 0; j < COLUMNS; j++)
+            for(int j = 0; j < ROWS; j++)
             {
                 getline(SeatingFile, tempStr, ',');
                 tempInt = atoi(tempStr.c_str());
@@ -154,9 +154,9 @@ void readInData(bool arr[COLUMNS][ROWS])
         cout << "Resetting all data values" << endl;
 
         //Fill seating chart with empty, default value
-        for (int i = 0; i < ROWS; i++)
+        for (int i = 0; i < CLM; i++)
         {
-            for(int j = 0; j < COLUMNS; j++)
+            for(int j = 0; j < ROWS; j++)
             {
                 arr[j][i] = false;
             }
@@ -174,7 +174,7 @@ void readInData(bool arr[COLUMNS][ROWS])
 }
 
 //Author: Jacob
-void writeOutData(bool arr[COLUMNS][ROWS])
+void writeOutData(bool arr[ROWS][CLM])
 {
     //Output seating data
     ofstream SeatingFile;
@@ -188,9 +188,9 @@ void writeOutData(bool arr[COLUMNS][ROWS])
     }
 
     //Write contents of bool array as 1's and 0's to file
-    for (int i = 0; i < ROWS; i++)
+    for (int i = 0; i < CLM; i++)
     {
-        for(int j = 0; j < COLUMNS; j++)
+        for(int j = 0; j < ROWS; j++)
         {
             SeatingFile << arr[j][i] << ",";
         }
@@ -210,7 +210,7 @@ void writeOutData(bool arr[COLUMNS][ROWS])
         pause();
     }
 
-    displaySeatingChart(SeatingReport, arr);
+    //displaySeatingChart(SeatingReport, arr);
 
     SeatingReport.close();
 
@@ -246,22 +246,22 @@ void writeOutData(bool arr[COLUMNS][ROWS])
 
     SalesReport.close();
 }
-
+*/
 
 //Auth:Chris
-void displaySeatingChart(ostream & str,bool arr[COLUMNS][ROWS]){
+void displaySeatingChart(ostream & str,bool** arr){
 	centerString(str,"HUNTINGTON PLAYHOUSE");
 	centerString(str,"SEATING CHART");
 	str<<endl;
 	centerString(str, "Rear");
-	for(int i=0;i<COLUMNS;i++){
+	for(int i=0; i < ROWS; i++){
 		string temp="";
-		for(int j=0;j<ROWS;j++){
+		for(int j=0; j < COLUMNS; j++){
 			char c='O';
 			if(arr[i][j])c='X';
 			temp.append(" ");
 			temp+=c;
-			if(j==(ROWS/2)-1){
+			if(j== (COLUMNS / 2) - 1){
 				temp.append(" ");
 			}
 		}
@@ -270,54 +270,8 @@ void displaySeatingChart(ostream & str,bool arr[COLUMNS][ROWS]){
 	str<<endl;
 }
 
-<<<<<<< HEAD
-//Auth:Chris
-void purchaceSingleSeat(){
-
-}
-=======
-
->>>>>>> origin/master
-
-//Auth:Chris
-void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bool seatCheck[COLUMNS][ROWS]){
-	bool cont=true;
-	try{
-		for(int i=0;i<sold.size() && sold.size()>0;i++){
-		Seat s=sold.at(i);
-		if(x==s.Row && y==s.Number){
-			cont=false;
-		}
-	}
-	}
-	catch(...){
-		cout<<"Size err"<<endl;
-	}
-
-	if(cont){
-		int temp=0;
-		Seat tempSeat;
-		cout<<"@";
-	try{
-		for(int i=0;i<unsold.size();i++){
-			Seat s=sold.at(i);
-			if(x==s.Row && y==s.Number){
-			seatCheck[x][y]=false;
-			temp=i;
-			tempSeat=s;
-		}
-		cout<<"#";
-		}
 
 
-		unsold.erase(unsold.begin()+temp-1);
-	}
-	catch(...){
-		cout<<"Size err"<<endl;
-	}
-		sold.push_back(tempSeat);
-	}
-}
 //////////////////////////////////////////////////////////////////////////////
 void PhoneNumberFormatter(string PhoneNumber)
 {
@@ -359,68 +313,76 @@ void PhoneNumberFormatter(string PhoneNumber)
 
 }
 
-void mainMenu(){
-	       int choice;
+//Auth:Chris
+void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bool **seatCheck){
+	bool cont=true;
+	try{
+		for(int i=0;i<sold.size() && sold.size()>0;i++){
+		Seat s=sold.at(i);
+		if(x==s.Row && y==s.Number){
+			cont=false;
+		}
+	}
+	}
+	catch(...){
+		cout<<"Size err"<<endl;
+	}
 
-    cout<< setw(61)<< " ______________________________________ \n"
-        << endl
-        << setw(61)<< "|              TICKET MENU             |\n"
-        << setw(61)<< "|                                      |\n"
-        << setw(61)<< "| A. Ticket Sales                      |\n"
-        << setw(61)<< "|                                      |\n"
-        << setw(61)<< "| B. Patron Information Search         |\n"
-        << setw(61)<< "|                                      |\n"
-        << setw(61)<< "| C. Current Revenue                   |\n"
-        << setw(61)<< "|                                      |\n"
-        << setw(61)<< "| D. Information                       |\n"
-        << setw(61)<< "|                                      |\n"
-        << setw(61)<< "| E. Exit                              |\n"
-        << setw(61)<< " ______________________________________  "<< endl;
-        cin >> choice
-
-switch(choice)
-    {
-        case 'A': //call
-                  cout<<endl;
-                    break;
-
-        case 'B': //call
-                  cout<<endl;
-                    break;
-
-        case 'C': //call
-                  cout<<endl;
-                    break;
-
-        case 'D': //call
-                  cout<<endl;
-                    break;
-
-        default:
-                 cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
-    }
+	if(cont){
+		int temp=0;
+		Seat tempSeat;
+		cout<<"@";
+	try{
+		for(int i=0;i<unsold.size();i++){
+			Seat s=sold.at(i);
+			if(x==s.Row && y==s.Number){
+			seatCheck[x][y]=false;
+			temp=i;
+			tempSeat=s;
+		}
+		cout<<"#";
+		}
 
 
+		unsold.erase(unsold.begin()+temp-1);
+	}
+	catch(...){
+		cout<<"Size err"<<endl;
+	}
+		sold.push_back(tempSeat);
+	}
 
 }
-
 //////////////////////////////////////////////////////////////////////////////
 //Auth:Chris
-void purchaceSingleSeat(int x, int y, vector<Seat> & unsold, vector<Seat>&sold) {
+void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
 	Seat temp;
-	int index;
+	int index ,x,y;
+	bool check=false;
+
+	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"2 5\")\n";
+	cin>>x>>y;
+
+	cout<<endl;
 	for(int i=0; i<unsold.size();i++){
 		Seat s = unsold.at(i);
-		if(s.Number==x && s.Row==y){
+		if(s.Number==x-1 && s.Row==y-1){
 			temp=s;
 			index=i;
 			sold.push_back(temp);
+			check=true;
+			seatCheck[x-1][y-1]=check;
 		}
 	}
-	unsold.erase(unsold.begin()+index);
+	if(check) {
+		cout << "Seat Col:" << x << " Row:" << y << " purchased." << endl;
+		unsold.erase(unsold.begin() + index);
+		cout << unsold.size() << " seats remaining" << endl;
+		displaySeatingChart(cout, seatCheck);
+	}
 }
 //Auth:Chris
-void purchaceBlockSeat(int x, int y, int x2, int y2, vector<Seat> & unsold, vector<Seat>&sold) {
+void purchaceBlockSeat(int x, int y, int x2, int y2, vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
 	if(x2<=x || y2<=x){
 		cout<<"INVALID SELECTION"<<endl;
 	}
@@ -443,19 +405,81 @@ void purchaceBlockSeat(int x, int y, int x2, int y2, vector<Seat> & unsold, vect
 
 }
 }
+
+void printMenuOptions(){
+	cout<< setw(61)<< " ______________________________________ \n"
+	<< endl
+	<< setw(61)<< "|              TICKET MENU             |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| A. Ticket Sales                      |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| B. Patron Information Search         |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| C. Current Revenue                   |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| D. Information                       |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| #. Exit                              |\n"
+	<< setw(61)<< " ______________________________________  "<< endl;
+}
+
+void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
+	char choice;
+	printMenuOptions();
+
+	cin >> choice;
+
+	while(choice!='#'){
+		switch(choice)
+		{
+			case 'A': //call
+
+				purchaceSingleSeat(unsold,sold,seatCheck);
+
+				break;
+
+			case 'B': //call
+				cout<<endl;
+				break;
+
+			case 'C': //call
+				cout<<endl;
+				break;
+
+			case 'D': //call
+				cout<<endl;
+				break;
+			case '#':
+				cout<<"EXIT"<<endl;
+				break;
+			default:
+				cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
+				cin>>choice;
+		}
+		printMenuOptions();
+		cin>>choice;
+	}
+
+
+
+}
 int main() {
-	mainMenu();
-	bool seatCheck[COLUMNS][ROWS];
-	for(int i=0;i<COLUMNS;i++){
-		for(int j=0;j<ROWS;j++){
+	cout<<"#";
+	bool **seatCheck=new bool *[COLUMNS];
+	for(int i=0; i < ROWS; i++){
+		seatCheck[i]=new bool[COLUMNS];
+	}
+	for(int i=0; i < ROWS; i++){
+		for(int j=0; j < COLUMNS; j++){
 		seatCheck[i][j]=false;
 		}
 	}
 	vector<Seat> unsoldSeats;
 	vector<Seat> soldSeats;
+	cout<<"!";
 
-	for(int i=0;i<COLUMNS;i++){
-		for(int j=0;j<ROWS;j++){
+	for(int i=0; i < ROWS; i++){
+		for(int j=0; j < COLUMNS; j++){
 			Seat s;
 			s.Number=i;
 			s.Row=j;
@@ -470,11 +494,9 @@ int main() {
 			unsoldSeats.push_back(s);
 		}
 	}
-	cout<<"3, 5 purchaced\n";
-	purchaceSingleSeat(3,5,unsoldSeats,soldSeats);
-	cout<<unsoldSeats.size()<<endl;
-	updateSeatCheckArr(3,5,soldSeats,unsoldSeats,seatCheck);
-	displaySeatingChart(cout,seatCheck);
+	cout<<"$";
+
+	mainMenu(unsoldSeats,soldSeats,seatCheck);
 	return 0;
 }
 

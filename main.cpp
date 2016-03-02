@@ -419,6 +419,30 @@ void purchaceSingleSeat(int x, int y, vector<Seat> & unsold, vector<Seat>&sold) 
 	}
 	unsold.erase(unsold.begin()+index);
 }
+//Auth:Chris
+void purchaceBlockSeat(int x, int y, int x2, int y2, vector<Seat> & unsold, vector<Seat>&sold) {
+	if(x2<=x || y2<=x){
+		cout<<"INVALID SELECTION"<<endl;
+	}
+	else{	
+		Seat temp;
+		int index;
+		for(int j=x; j<x2; j++){
+			for(int k=y;k<y2;k++){
+				for(int i=0; i<unsold.size();i++){
+				Seat s = unsold.at(i);
+				if(s.Number==j && s.Row==k){
+					temp=s;
+					index=i;
+					sold.push_back(temp);
+				}
+			}
+			unsold.erase(unsold.begin()+index);
+				}
+			}
+
+}
+}
 int main() {
 	mainMenu();
 	bool seatCheck[COLUMNS][ROWS];

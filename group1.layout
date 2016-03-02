@@ -3,12 +3,12 @@ Order=0
 Focused=0
 [Editor_0]
 <<<<<<< HEAD
-CursorCol=2
+CursorCol=1
 =======
 CursorCol=60
 >>>>>>> refs/remotes/origin/Chris
-CursorRow=395
-TopLine=388
+CursorRow=433
+TopLine=410
 LeftChar=1
 [Editor_1]
 CursorCol=15

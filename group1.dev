@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=..\Lab3\basiclib.h
+FileName=basiclib.h
 CompileCpp=1
 Folder=
 Compile=1

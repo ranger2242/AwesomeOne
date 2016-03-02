@@ -308,6 +308,7 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 	}
 }
 //////////////////////////////////////////////////////////////////////////////
+//Author: Celeste
 void PhoneNumberFormatter(string PhoneNumber)
 {
     int count;
@@ -348,6 +349,7 @@ void PhoneNumberFormatter(string PhoneNumber)
 
 }
 
+//Author: Celeste
 void mainMenu(){
 	       int choice;
        string separatorLine;

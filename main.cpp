@@ -8,6 +8,7 @@ Date: 3/11/2016
 */
 
 //Library Class Reader Files
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -355,13 +356,23 @@ void mainMenu(){
        string separatorLine;
        separatorLine.assign(40,'-');
 
-        cout << setw(40)<< " TICKET MENU" ;
+        cout << setw(40)<< " TICKET MENU\n" ;
         cout << setw(20) << " " << separatorLine << "\n\n";
-        cout << setw(30)<< "1. Ticket Sales ";
-        cout << setw(30)<< "2. Patron Information Search";
-        cout << setw(30)<< "3. Current Revenue";
-        cout << setw(30)<< "4. Information";
-        cout << setw(30)<< "5. Exit Program";
+        cout << setw(30)<< "1. Ticket Sales \n";
+        cout << setw(30)<< "2. Patron Information Search\n";
+        cout << setw(30)<< "3. Current Revenue\n";
+        cout << setw(30)<< "4. Information\n";
+        cout << setw(30)<< "5. Exit Program\n\n\n";
+        centerString(cout," TICKET MENU");
+        
+        cout << setw(20) << " " << separatorLine << "\n\n";
+        centerString(cout,"1. Ticket Sales");
+
+        centerString(cout, "2. Patron Information Search");
+        centerString(cout,"3. Current Revenue");
+        centerString(cout,"4. Information");
+        centerString(cout,"5. Exit Program");
+
         cin >> choice;
 
     if (choice == 1) // Ticket Sales

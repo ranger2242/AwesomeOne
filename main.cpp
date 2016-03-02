@@ -8,6 +8,7 @@ Date: 3/11/2016
 */
 
 //Library Class Reader Files
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -149,6 +150,8 @@ void readInData(bool arr[COLUMNS][ROWS])
 
     else
     {
+        cout << "Resetting all data values" << endl;
+
         //Fill seating chart with empty, default value
         for (int i = 0; i < ROWS; i++)
         {
@@ -268,7 +271,7 @@ void displaySeatingChart(ostream & str,bool arr[COLUMNS][ROWS]){
 
 //Auth:Chris
 void purchaceSingleSeat(){
-
+	
 }
 
 //Auth:Chris
@@ -285,7 +288,7 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 	catch(...){
 		cout<<"Size err"<<endl;
 	}
-
+	
 	if(cont){
 		int temp=0;
 		Seat tempSeat;
@@ -300,8 +303,8 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 		}
 		cout<<"#";
 		}
-
-
+		
+		
 		unsold.erase(unsold.begin()+temp-1);
 	}
 	catch(...){
@@ -311,7 +314,6 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 	}
 }
 //////////////////////////////////////////////////////////////////////////////
-//Author: Celeste
 void PhoneNumberFormatter(string PhoneNumber)
 {
     int count;
@@ -352,19 +354,19 @@ void PhoneNumberFormatter(string PhoneNumber)
 
 }
 
-//Author: Celeste
 void mainMenu(){
 	       int choice;
        string separatorLine;
        separatorLine.assign(40,'-');
 
-        cout << setw(40)<< " TICKET MENU" ;
+        cout << setw(40)<< " TICKET MENU\n" ;
         cout << setw(20) << " " << separatorLine << "\n\n";
-        cout << setw(30)<< "1. Ticket Sales ";
-        cout << setw(30)<< "2. Patron Information Search";
-        cout << setw(30)<< "3. Current Revenue";
-        cout << setw(30)<< "4. Information";
-        cout << setw(30)<< "5. Exit Program";
+        cout << setw(30)<< "1. Ticket Sales \n";
+        cout << setw(30)<< "2. Patron Information Search\n";
+        cout << setw(30)<< "3. Current Revenue\n";
+        cout << setw(30)<< "4. Information\n";
+        cout << setw(30)<< "5. Exit Program\n\n\n";
+
         cin >> choice;
 
     if (choice == 1) // Ticket Sales
@@ -404,14 +406,14 @@ int main() {
 		seatCheck[i][j]=false;
 		}
 	}
-	vector<Seat> unsoldSeats;
-	vector<Seat> soldSeats;
+	vector<Seat> unsoldSeats; 
+	vector<Seat> soldSeats; 
 
 	for(int i=0;i<COLUMNS;i++){
 		for(int j=0;j<ROWS;j++){
 			Seat s;
 			s.Number=i;
-			s.Row=j;
+			s.Row=j;			
 			if(i>0 || i<5){
 				s.Price=HIGHPRICE;
 			}

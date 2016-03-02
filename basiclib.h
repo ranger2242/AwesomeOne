@@ -13,6 +13,7 @@
 #define HEADER_BASICLIB_H
 using namespace std;
 #endif //HEADER_BASICLIB_H
+#define _CRT_SECURE_NO_WARNINGS 
 
 int scrWidth=80;
 void sep(ostream &str){
@@ -53,7 +54,7 @@ string allUpper(string s){
     locale lc;
     string capString="";
     for(int i=0; i<s.length();i++){
-        char pos=toupper(s.at(i),lc);
+        char pos=toupper(s.at(i));
         capString+=pos;
     }
     return capString;

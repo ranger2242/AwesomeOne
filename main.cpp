@@ -129,47 +129,6 @@ void PhoneNumberFormatter(string PhoneNumber)
     }
 
 }
-
-//Auth:Chris
-void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bool **seatCheck){
-	bool cont=true;
-	try{
-		for(int i=0;i<sold.size() && sold.size()>0;i++){
-		Seat s=sold.at(i);
-		if(x==s.Row && y==s.Number){
-			cont=false;
-		}
-	}
-	}
-	catch(...){
-		cout<<"Size err"<<endl;
-	}
-
-	if(cont){
-		int temp=0;
-		Seat tempSeat;
-		cout<<"@";
-	try{
-		for(int i=0;i<unsold.size();i++){
-			Seat s=sold.at(i);
-			if(x==s.Row && y==s.Number){
-			seatCheck[x][y]=false;
-			temp=i;
-			tempSeat=s;
-		}
-		cout<<"#";
-		}
-
-
-		unsold.erase(unsold.begin()+temp-1);
-	}
-	catch(...){
-		cout<<"Size err"<<endl;
-	}
-		sold.push_back(tempSeat);
-	}
-
-}
 //////////////////////////////////////////////////////////////////////////////
 //Auth:Chris
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
@@ -196,28 +155,64 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 		unsold.erase(unsold.begin() + index);
 		cout << unsold.size() << " seats remaining" << endl;
 		displaySeatingChart(cout, seatCheck);
+	}else{
+		cout<<"Seat is unavalable for purchase."<<endl;
 	}
+
 }
 //Auth:Chris
-void purchaceBlockSeat(int x, int y, int x2, int y2, vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
-	if(x2<=x || y2<=x){
+void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
+	int x,x2,y,y2;
+	cout<<"Block Seat purchase.";
+	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"x y x2 y2\")\n";
+	cin>>x>>y>>x2>>y2;
+	vector<Seat> conflicts;
+	bool cont=true;
+	for(int j=x; j<x2; j++) {
+		for (int k = y; k < y2; k++) {
+			for (int i = 0; i < sold.size(); i++) {
+				Seat s = sold.at(i);
+				if (s.Number == j - 1 && s.Row == k - 1) {
+					cont = false;
+					conflicts.push_back(s);
+				}
+			}
+		}
+	}
+	if(!cont){
+		for(int i=0;i<conflicts.size();i++){
+			Seat s = conflicts.at(i);
+			cout<<"Seat at Col:"<<s.Number<<" Row:"<<s.Row<<" already purchased.";
+		}
+	}
+	if(!((x2>=x || y2>=y) && cont)){
 		cout<<"INVALID SELECTION"<<endl;
 	}
 	else{
 		Seat temp;
 		int index;
-		for(int j=x; j<x2; j++){
-			for(int k=y;k<y2;k++){
+		bool check=false;
+		for(int j=x; j<=x2; j++){
+			for(int k=y;k<=y2;k++){
 				for(int i=0; i<unsold.size();i++){
 				Seat s = unsold.at(i);
-				if(s.Number==j && s.Row==k){
+				if(s.Number==j-1 && s.Row==k-1){
 					temp=s;
 					index=i;
 					sold.push_back(temp);
+					check=true;
+					seatCheck[j-1][k-1]=check;
 				}
 			}
-			unsold.erase(unsold.begin()+index);
+				if(check) {
+					cout << "Seat Col:" << j << " Row:" << k << " purchased." << endl;
+					unsold.erase(unsold.begin() + index);
+					cout << unsold.size() << " seats remaining" << endl;
+					displaySeatingChart(cout, seatCheck);
+				}else{
+					cout<<"Seat is unavalable for purchase."<<endl;
 				}
+			}
 			}
 
 }
@@ -259,6 +254,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
             case 'b':
 			case 'B': //call
+				purchaceBlockSeat(unsold,sold,seatCheck);
 				cout<<endl;
 				break;
 

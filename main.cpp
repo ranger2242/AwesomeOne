@@ -1,4 +1,4 @@
-/*
+/*hhjhsyt
 Professor: Dr. Knox
 Class: COSC 1437 Spring 2016
 Assignment: Team Project 1: Movie Theater

@@ -352,17 +352,22 @@ void PhoneNumberFormatter(string PhoneNumber)
 //Author: Celeste
 void mainMenu(){
 	       int choice;
-       string separatorLine;
-       separatorLine.assign(40,'-');
+	       
+     cout<< setw(61)<< " ______________________________________ \n"
+        << endl
+        << setw(61)<< "|              TICKET MENU             |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| A. Ticket Sales                      |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| B. Patron Information Search         |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| C. Current Revenue                   |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| D. Information                       |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| E. Exit                              |\n"
+        << setw(61)<< " ______________________________________  "<< endl;
 
-        cout << setw(40)<< " TICKET MENU" ;
-        cout << setw(20) << " " << separatorLine << "\n\n";
-        cout << setw(30)<< "1. Ticket Sales ";
-        cout << setw(30)<< "2. Patron Information Search";
-        cout << setw(30)<< "3. Current Revenue";
-        cout << setw(30)<< "4. Information";
-        cout << setw(30)<< "5. Exit Program";
-        cin >> choice;
 
     if (choice == 1) // Ticket Sales
     {

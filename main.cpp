@@ -6,6 +6,7 @@ Author: Jacob Gibson, Chris Cavazos, and Celeste Avila
 Leader: Chris Cavazos
 Date: 3/11/2016
 */
+//hello
 /////////////////////////////////////////////////////Change
 //Library Class Reader Files
 #include <vector>
@@ -209,7 +210,7 @@ void writeOutData(bool arr[COLUMNS][ROWS])
         pause();
     }
 
-    displaySeatingChart(SeatingReport, arr[COLUMNS][ROWS]);
+    displaySeatingChart(SeatingReport, arr);
 
     SeatingReport.close();
 
@@ -269,10 +270,14 @@ void displaySeatingChart(ostream & str,bool arr[COLUMNS][ROWS]){
 	str<<endl;
 }
 
+<<<<<<< HEAD
 //Auth:Chris
 void purchaceSingleSeat(){
 
 }
+=======
+
+>>>>>>> origin/master
 
 //Auth:Chris
 void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bool seatCheck[COLUMNS][ROWS]){
@@ -400,7 +405,20 @@ switch(choice)
 }
 
 //////////////////////////////////////////////////////////////////////////////
-
+//Auth:Chris
+void purchaceSingleSeat(int x, int y, vector<Seat> & unsold, vector<Seat>&sold) {
+	Seat temp;
+	int index;
+	for(int i=0; i<unsold.size();i++){
+		Seat s = unsold.at(i);
+		if(s.Number==x && s.Row==y){
+			temp=s;
+			index=i;
+			sold.push_back(temp);
+		}
+	}
+	unsold.erase(unsold.begin()+index);
+}
 int main() {
 	mainMenu();
 	bool seatCheck[COLUMNS][ROWS];
@@ -428,6 +446,8 @@ int main() {
 			unsoldSeats.push_back(s);
 		}
 	}
+	cout<<"3, 5 purchaced\n";
+	purchaceSingleSeat(3,5,unsoldSeats,soldSeats);
 	cout<<unsoldSeats.size()<<endl;
 	updateSeatCheckArr(3,5,soldSeats,unsoldSeats,seatCheck);
 	displaySeatingChart(cout,seatCheck);

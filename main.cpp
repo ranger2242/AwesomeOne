@@ -146,8 +146,6 @@ void readInData(bool arr[COLUMNS][ROWS])
 
     else
     {
-        cout << "Resetting all data values" << endl;
-
         //Fill seating chart with empty, default value
         for (int i = 0; i < ROWS; i++)
         {
@@ -267,7 +265,7 @@ void displaySeatingChart(ostream & str,bool arr[COLUMNS][ROWS]){
 
 //Auth:Chris
 void purchaceSingleSeat(){
-	
+
 }
 
 //Auth:Chris
@@ -284,7 +282,7 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 	catch(...){
 		cout<<"Size err"<<endl;
 	}
-	
+
 	if(cont){
 		int temp=0;
 		Seat tempSeat;
@@ -299,8 +297,8 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 		}
 		cout<<"#";
 		}
-		
-		
+
+
 		unsold.erase(unsold.begin()+temp-1);
 	}
 	catch(...){
@@ -401,14 +399,14 @@ int main() {
 		seatCheck[i][j]=false;
 		}
 	}
-	vector<Seat> unsoldSeats; 
-	vector<Seat> soldSeats; 
+	vector<Seat> unsoldSeats;
+	vector<Seat> soldSeats;
 
 	for(int i=0;i<COLUMNS;i++){
 		for(int j=0;j<ROWS;j++){
 			Seat s;
 			s.Number=i;
-			s.Row=j;			
+			s.Row=j;
 			if(i>0 || i<5){
 				s.Price=HIGHPRICE;
 			}

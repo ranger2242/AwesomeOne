@@ -11,15 +11,7 @@ Date: 3/11/2016
 //Library Class Reader Files
 #include <vector>
 #include <iostream>
-#include <fstream>
 #include <iomanip>
-#include <string>
-#include <cmath>
-#include <cstdlib>
-#include <stdlib.h>
-#include <ctime>
-#include <cctype>
-#include <cstring>
 #include <algorithm>
 #include <stdio.h>
 #include <windows.h>

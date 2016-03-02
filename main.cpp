@@ -18,6 +18,7 @@ Date: 3/11/2016
 #include "basiclib.h"
 
 using namespace std;
+void displayLogo();
 
 //Constants for theater dimensions
 const int COLUMNS = 16, ROWS = 10;
@@ -294,10 +295,20 @@ void displayLogo()
         Sleep(750);
         sep(cout);
 }
+void spinner(){
+	char arr[4]={'|','\\','-','/'};
+	for(int i=0; i<2000; i++){
+		cout<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<" ";
+		system("CLS");
+		Sleep(16);
+	}
+}
 int main() {
+	spinner();
+	displayLogo();
+
     //Display team logo of awesome
-    displayLogo();
-    pause();
+
 
 	cout<<"#";
 	bool **seatCheck=new bool *[COLUMNS];

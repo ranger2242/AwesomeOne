@@ -271,7 +271,7 @@ void displaySeatingChart(ostream & str,bool arr[COLUMNS][ROWS]){
 
 //Auth:Chris
 void purchaceSingleSeat(){
-	
+
 }
 
 //Auth:Chris
@@ -288,7 +288,7 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 	catch(...){
 		cout<<"Size err"<<endl;
 	}
-	
+
 	if(cont){
 		int temp=0;
 		Seat tempSeat;
@@ -303,8 +303,8 @@ void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bo
 		}
 		cout<<"#";
 		}
-		
-		
+
+
 		unsold.erase(unsold.begin()+temp-1);
 	}
 	catch(...){
@@ -356,43 +356,46 @@ void PhoneNumberFormatter(string PhoneNumber)
 
 void mainMenu(){
 	       int choice;
-       string separatorLine;
-       separatorLine.assign(40,'-');
 
-        cout << setw(40)<< " TICKET MENU\n" ;
-        cout << setw(20) << " " << separatorLine << "\n\n";
-        cout << setw(30)<< "1. Ticket Sales \n";
-        cout << setw(30)<< "2. Patron Information Search\n";
-        cout << setw(30)<< "3. Current Revenue\n";
-        cout << setw(30)<< "4. Information\n";
-        cout << setw(30)<< "5. Exit Program\n\n\n";
+    cout<< setw(61)<< " ______________________________________ \n"
+        << endl
+        << setw(61)<< "|              TICKET MENU             |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| A. Ticket Sales                      |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| B. Patron Information Search         |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| C. Current Revenue                   |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| D. Information                       |\n"
+        << setw(61)<< "|                                      |\n"
+        << setw(61)<< "| E. Exit                              |\n"
+        << setw(61)<< " ______________________________________  "<< endl;
+        cin >> choice
 
-        cin >> choice;
-
-    if (choice == 1) // Ticket Sales
+switch(choice)
     {
+        case 'A': //call
+                  cout<<endl;
+                    break;
 
+        case 'B': //call
+                  cout<<endl;
+                    break;
+
+        case 'C': //call
+                  cout<<endl;
+                    break;
+
+        case 'D': //call
+                  cout<<endl;
+                    break;
+
+        default:
+                 cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
     }
-     else if (choice == 2) // Patron Information
-     {
 
-     }
-       else if (choice == 3)// Current Revenue
-        {
 
-        }
-        else if (choice == 4)// Information
-          {
-
-          }
-       else if (choice == 5)// Exit
-        {
-
-        }
-    else // error check
-    {
-        cout << " Invalid Choice.";
-    }
 
 }
 
@@ -406,14 +409,14 @@ int main() {
 		seatCheck[i][j]=false;
 		}
 	}
-	vector<Seat> unsoldSeats; 
-	vector<Seat> soldSeats; 
+	vector<Seat> unsoldSeats;
+	vector<Seat> soldSeats;
 
 	for(int i=0;i<COLUMNS;i++){
 		for(int j=0;j<ROWS;j++){
 			Seat s;
 			s.Number=i;
-			s.Row=j;			
+			s.Row=j;
 			if(i>0 || i<5){
 				s.Price=HIGHPRICE;
 			}

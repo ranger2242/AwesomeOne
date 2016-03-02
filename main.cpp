@@ -22,6 +22,7 @@ Date: 3/11/2016
 #include <cstring>
 #include <algorithm>
 #include "basiclib.h"
+#include "fileIO.h"
 
 using namespace std;
 
@@ -56,7 +57,6 @@ struct Seat
     }
 };
 
-void pause();
 
 //Reads in Seating Chart data and sales revenue data from .txt files
 void readInData();
@@ -64,189 +64,6 @@ void readInData();
 void writeOutData(bool arr[ROWS][COLUMNS]);
 //Outputs seating chart report to console or file
 //void displaySeatingChart(ostream & str, bool arr[ROWS][CLM]);
-
-//Author: Jacob
-void pause()
-{
-	system("PAUSE");
-	system("CLS");
-}
-/*
-//Author: Jacob
-void readInData(bool arr[ROWS][CLM])
-{
-    system("CLS");
-    //Ask user to read file data or a new blank set of data
-    char answer;
-    cout << "Do you want to read data from a file instead of starting with blank data? (Y/N)" << endl;
-    cin >> answer;
-
-    if (answer == 'Y' || answer == 'y')
-    {
-        cout << "Reading data from file ..." << endl;
-
-        //Read in seating data
-        ifstream SeatingFile;
-        SeatingFile.open("SeatingData.csv");
-
-        //If file fails to open, return to menu so user can exit program
-        if(SeatingFile.fail())
-        {
-            cout << "The seating chart file failed to open." << endl;
-            pause();
-            return;
-        }
-
-        string tempStr;
-        int tempInt;
-
-        //Read contents of seating data file into bool array
-        for (int i = 0; i < CLM; i++)
-        {
-            for(int j = 0; j < ROWS; j++)
-            {
-                getline(SeatingFile, tempStr, ',');
-                tempInt = atoi(tempStr.c_str());
-                arr[j][i] = static_cast<bool>(tempInt);
-            }
-        }
-
-        SeatingFile.close();
-
-        //Input Sales data
-        ifstream SalesFile;
-        SalesFile.open("SalesData.csv");
-
-        //If file fails to open, inform user
-        if(SalesFile.fail())
-        {
-            cout << "The sales file failed to open." << endl;
-            pause();
-        }
-
-//        //Temporary values for amount of seats sold
-//        int tempInts[3];
-//
-//        //Get seat sale numbers from file
-//        for(int i = 0; i < 3; i++)
-//        {
-//            getline(SalesFile, tempStr, ',');
-//            tempInts[i] = atoi(tempStr.c_str());
-//        }
-//
-//        lowSeatsSold = tempInts[0];
-//        medSeatsSold = tempInts[1];
-//        highSeatsSold = tempInts[2];
-//
-//       //Get totalIncome amount from file
-//       getline(SalesFile, tempStr, ',');
-//       totalIncome = atof(tempStr.c_str());
-
-
-        SalesFile.close();
-
-        cout << "All data read in correctly!" << endl;
-        pause();
-    }
-
-    else
-    {
-        cout << "Resetting all data values" << endl;
-
-        //Fill seating chart with empty, default value
-        for (int i = 0; i < CLM; i++)
-        {
-            for(int j = 0; j < ROWS; j++)
-            {
-                arr[j][i] = false;
-            }
-        }
-
-        //Set seatsSold counters and total income to zero
-//        lowSeatsSold = 0;
-//        medSeatsSold = 0;
-//        highSeatsSold = 0;
-//        totalIncome = 0;
-
-        cout << "Data values reset." << endl;
-        pause();
-    }
-}
-
-//Author: Jacob
-void writeOutData(bool arr[ROWS][CLM])
-{
-    //Output seating data
-    ofstream SeatingFile;
-    SeatingFile.open("SeatingData.csv");
-
-    //If file fails to open, inform user
-    if(SeatingFile.fail())
-    {
-        cout << "The seating chart file failed to open." << endl;
-        pause();
-    }
-
-    //Write contents of bool array as 1's and 0's to file
-    for (int i = 0; i < CLM; i++)
-    {
-        for(int j = 0; j < ROWS; j++)
-        {
-            SeatingFile << arr[j][i] << ",";
-        }
-        SeatingFile << endl;
-    }
-
-    SeatingFile.close();
-
-    //Output Seating Chart report as shown in console
-    ofstream SeatingReport;
-    SeatingReport.open("SeatingReport.rpt");
-
-    //If file fails to open, inform user
-    if(SeatingReport.fail())
-    {
-        cout << "The seating report file failed to open." << endl;
-        pause();
-    }
-
-    //displaySeatingChart(SeatingReport, arr);
-
-    SeatingReport.close();
-
-    //Output Sales data
-    ofstream SalesFile;
-    SalesFile.open("SalesData.csv");
-
-    //If file fails to open, inform user
-    if(SalesFile.fail())
-    {
-        cout << "The sales file failed to open." << endl;
-        pause();
-    }
-
-//    SalesFile << lowSeatsSold << ",";
-//    SalesFile << medSeatsSold << ",";
-//    SalesFile << highSeatsSold << ",";
-//    SalesFile << totalIncome << endl;
-
-    SalesFile.close();
-
-    //Output Sales report as shown in console
-    ofstream SalesReport;
-    SalesReport.open("SalesReport.rpt");
-
-    if(SalesReport.fail())
-    {
-        cout << "The sales file failed to open." << endl;
-        pause();
-    }
-
-    //displayCurrentRevenue(SalesReport);
-
-    SalesReport.close();
-}
-*/
 
 //Auth:Chris
 void displaySeatingChart(ostream & str,bool** arr){
@@ -312,47 +129,6 @@ void PhoneNumberFormatter(string PhoneNumber)
     }
 
 }
-
-//Auth:Chris
-void updateSeatCheckArr(int x, int y, vector<Seat> sold, vector<Seat> unsold, bool **seatCheck){
-	bool cont=true;
-	try{
-		for(int i=0;i<sold.size() && sold.size()>0;i++){
-		Seat s=sold.at(i);
-		if(x==s.Row && y==s.Number){
-			cont=false;
-		}
-	}
-	}
-	catch(...){
-		cout<<"Size err"<<endl;
-	}
-
-	if(cont){
-		int temp=0;
-		Seat tempSeat;
-		cout<<"@";
-	try{
-		for(int i=0;i<unsold.size();i++){
-			Seat s=sold.at(i);
-			if(x==s.Row && y==s.Number){
-			seatCheck[x][y]=false;
-			temp=i;
-			tempSeat=s;
-		}
-		cout<<"#";
-		}
-
-
-		unsold.erase(unsold.begin()+temp-1);
-	}
-	catch(...){
-		cout<<"Size err"<<endl;
-	}
-		sold.push_back(tempSeat);
-	}
-
-}
 //////////////////////////////////////////////////////////////////////////////
 //Auth:Chris
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
@@ -379,28 +155,64 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 		unsold.erase(unsold.begin() + index);
 		cout << unsold.size() << " seats remaining" << endl;
 		displaySeatingChart(cout, seatCheck);
+	}else{
+		cout<<"Seat is unavalable for purchase."<<endl;
 	}
+
 }
 //Auth:Chris
-void purchaceBlockSeat(int x, int y, int x2, int y2, vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
-	if(x2<=x || y2<=x){
+void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
+	int x,x2,y,y2;
+	cout<<"Block Seat purchase.";
+	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"x y x2 y2\")\n";
+	cin>>x>>y>>x2>>y2;
+	vector<Seat> conflicts;
+	bool cont=true;
+	for(int j=x; j<x2; j++) {
+		for (int k = y; k < y2; k++) {
+			for (int i = 0; i < sold.size(); i++) {
+				Seat s = sold.at(i);
+				if (s.Number == j - 1 && s.Row == k - 1) {
+					cont = false;
+					conflicts.push_back(s);
+				}
+			}
+		}
+	}
+	if(!cont){
+		for(int i=0;i<conflicts.size();i++){
+			Seat s = conflicts.at(i);
+			cout<<"Seat at Col:"<<s.Number<<" Row:"<<s.Row<<" already purchased.";
+		}
+	}
+	if(!((x2>=x || y2>=y) && cont)){
 		cout<<"INVALID SELECTION"<<endl;
 	}
-	else{	
+	else{
 		Seat temp;
 		int index;
-		for(int j=x; j<x2; j++){
-			for(int k=y;k<y2;k++){
+		bool check=false;
+		for(int j=x; j<=x2; j++){
+			for(int k=y;k<=y2;k++){
 				for(int i=0; i<unsold.size();i++){
 				Seat s = unsold.at(i);
-				if(s.Number==j && s.Row==k){
+				if(s.Number==j-1 && s.Row==k-1){
 					temp=s;
 					index=i;
 					sold.push_back(temp);
+					check=true;
+					seatCheck[j-1][k-1]=check;
 				}
 			}
-			unsold.erase(unsold.begin()+index);
+				if(check) {
+					cout << "Seat Col:" << j << " Row:" << k << " purchased." << endl;
+					unsold.erase(unsold.begin() + index);
+					cout << unsold.size() << " seats remaining" << endl;
+					displaySeatingChart(cout, seatCheck);
+				}else{
+					cout<<"Seat is unavalable for purchase."<<endl;
 				}
+			}
 			}
 
 }
@@ -429,26 +241,33 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
 	cin >> choice;
 
+
 	while(choice!='#'){
 		switch(choice)
 		{
+		    case 'a':
 			case 'A': //call
 
 				purchaceSingleSeat(unsold,sold,seatCheck);
 
 				break;
 
+            case 'b':
 			case 'B': //call
+				purchaceBlockSeat(unsold,sold,seatCheck);
 				cout<<endl;
 				break;
 
+            case 'c':
 			case 'C': //call
 				cout<<endl;
 				break;
 
+            case 'd':
 			case 'D': //call
 				cout<<endl;
 				break;
+
 			case '#':
 				cout<<"EXIT"<<endl;
 				break;
@@ -497,6 +316,7 @@ int main() {
 	cout<<"$";
 
 	mainMenu(unsoldSeats,soldSeats,seatCheck);
+
 	return 0;
 }
 

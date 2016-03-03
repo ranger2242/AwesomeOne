@@ -247,6 +247,7 @@ void displaySeatingChart(ostream & str,bool** arr){
 	}
 	str<<endl;
 }
+//second menu prompts user how many tickets they want to buy
 void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {
     char c;
@@ -266,20 +267,22 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 
 switch(c)
     {
-        case 'A':{
-        	        	purchaceSingleSeat(unsold, sold, seatCheck);
+        case 'A':
+        case 'a':
+        	        	purchaceSingleSeat(unsold, sold, seatCheck);//call
 			break;
-		}
-        case 'B':{ //call
-        	 purchaceBlockSeat(unsold, sold, seatCheck);
+		
+        case 'B': 
+        case 'b':
+        	 purchaceBlockSeat(unsold, sold, seatCheck);//call
                   cout<<endl;
                     break;
-}
-        default: //call
+	
+        default: 
                  cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
     }
 }
-
+// main menu
 void printMenuOptions(){
 	cout<< setw(61)<< " ______________________________________ \n"
 	<< endl
@@ -328,17 +331,17 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 		{
 		    case 'a':
 			case 'A':
-				displaySeatingChart(cout, seatCheck);
+				displaySeatingChart(cout, seatCheck);//call
 				break;
 
             case 'b':
 			case 'B':
-			    ticketSalesMenu(unsold, sold, seatCheck);
+			    ticketSalesMenu(unsold, sold, seatCheck);//call
 				break;
 
             case 'c':
-			case 'C': //call
-			    searchPatron();
+			case 'C': 
+			    searchPatron();//call
 				cout<<endl;
 				break;
 
@@ -350,7 +353,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
             case 'e':
             case 'E':
-                programCredits();
+                programCredits();//call
                 break;
 
 			case '#':

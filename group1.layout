@@ -68,7 +68,7 @@ LeftChar=1
 >>>>>>> origin/master
 CursorCol=1
 CursorRow=1
-TopLine=50
+TopLine=8
 LeftChar=1
 <<<<<<< HEAD
 [Editor_4]
@@ -77,8 +77,14 @@ CursorRow=11
 TopLine=1
 =======
 [Editor_3]
+<<<<<<< HEAD
 CursorCol=62
 CursorRow=27
 TopLine=17
+>>>>>>> origin/master
+=======
+CursorCol=22
+CursorRow=247
+TopLine=247
 >>>>>>> origin/master
 LeftChar=1

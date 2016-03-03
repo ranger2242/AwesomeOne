@@ -8,6 +8,8 @@ void printMenuOptions();
 void displaySeatingChart(ostream &,bool**);
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) ;
 
+static vector<Patron> people;
+
 //Constants for theater dimensions
 const int COLUMNS = 16, ROWS = 10;
 //Constants for theater seating prices
@@ -54,20 +56,86 @@ void PhoneNumberFormatter(string PhoneNumber)
     }
 
 }
+Patron searchPatron(){
+			cls();
+			int id;
+		title(cout, "ACCOUNT SEARCH");
+		cout<<"Please enter your ID number:";
+		cin>>id;
+		int index;
+		bool found=false;
+		for(int i=0;i<people.size();i++){
+			if(to_string(id)==people.at(i).ID){
+				index=i;
+				found=true;
+			}
+		}
+		if(found){
+			return people.at(index);
+		}
+		else{
+			centerString(cout,"---RECORD NOT FOUND---");
+		}
+}
+Patron createPatron(){
+	cls();
+			Patron p;
+
+	title(cout,"ACCOUNT INFO");
+	cout<<"Do you have an existing account? (y/n):";
+	char input;
+	cin>>input;
+	if(input=='y'){
+		searchPatron();
+	}else if(input =='n'){
+			cls();
+		title(cout,"ACCOUNT SETUP");
+		cout<<"Please enter your first name, last name, and phone number below."<<endl;
+		cout<<"(ex. Dingus McNugget 3613459876)";
+		string full,first,last,number;
+		cin.ignore();
+		cin>>first>>last>>number;
+		full=first+" "+last;
+		p.Name=full;
+		p.PhoneNumber=number;
+		bool check=false;
+		int id;
+		while(!check){
+			id=(rand()%160)+1;
+			bool match = false;
+			for(int i=0;i<people.size();i++){
+				if(to_string(id)==people.at(i).ID){
+					match=true;
+				}
+			}
+			if(!match){
+				check=true;
+			}
+		}
+		p.ID= to_string(id);
+		cout<<"Your ID is:"<<id<<endl;
+		sep(cout);
+	}
+	return p;
+}
 //////////////////////////////////////////////////////////////////////////////
 //Auth:Chris
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
+	Patron p=createPatron();
 	Seat temp;
 	int index ,x,y;
 	bool check=false;
 
 	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"2 5\")\n";
+	cin.ignore();
 	cin>>x>>y;
 
 	cout<<endl;
 	for(int i=0; i<unsold.size();i++){
 		Seat s = unsold.at(i);
 		if(s.Number==x-1 && s.Row==y-1){
+			s.SetID(p);
+				people.push_back(p);
 			temp=s;
 			index=i;
 			sold.push_back(temp);
@@ -87,9 +155,11 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 }
 //Auth:Chris
 void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
+	Patron p=createPatron();
 	int x,x2,y,y2;
 	cout<<"Block Seat purchase.";
 	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"x y x2 y2\")\n";
+	cin.ignore();
 	cin>>x>>y>>x2>>y2;
 	vector<Seat> conflicts;
 	bool cont=true;
@@ -122,6 +192,9 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 				for(int i=0; i<unsold.size();i++){
 				Seat s = unsold.at(i);
 				if(s.Number==j-1 && s.Row==k-1){
+					s.SetID(p);
+						people.push_back(p);
+
 					temp=s;
 					index=i;
 					sold.push_back(temp);
@@ -227,6 +300,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
             case 'b':
 			case 'B': //call
+				searchPatron();
 				break;
 
             case 'c':

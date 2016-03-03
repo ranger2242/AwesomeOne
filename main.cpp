@@ -25,92 +25,24 @@ void spinner();
 
 //Included here so it can use the above constants
 
-//Author: Jacob
-//Displays awesome logo for the team at start of program
-void displayLogo()
-{
-        sep(cout);
-        Sleep(750);
-        cout << "" << endl;
-        Sleep(750);
-        cout << "   |__   __|                       /\\                                          " << endl;
-        Sleep(750);
-        cout << "      | | ___  __ _ _ __ ___      /  \\__      _____  ___  ___  _ __ ___   ___" << endl;
-        Sleep(750);
-        cout << "      | |/ _ \\/ _` | '_ ` _ \\    / /\\ \\ \\ /\\ / / _ \\/ __|/ _ \\| '_ ` _ \\ / _ \\ " << endl;
-        Sleep(750);
-        cout << "      | |  __/ (_| | | | | | |  / ____ \\ V  V /  __/\\__ \\ (_) | | | | | |  __/" << endl;
-        Sleep(750);
-        cout << "      |_|\\___|\\__,_|_| |_| |_| /_/    \\_\\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___|\n\n" << endl;
-        Sleep(750);
-        sep(cout);
-        
-}
-void spinner(){
-	 string arr[]={	                                                                                                                                                                                                                                                                    
-             ":''''''''''';+''''''''''':'''''''''''#+'''''''''''`                                                       ",                
-             ":           @.           @           @.           @",               
-             ":           @.           @           @.           @",               
-             ".@@@     @@@@.       +@@@@           @.           @",               
-             "   ,     @   .           @    @@@    @.           @",               
-             "   ,     @   .           @           @.           @",               
-             "   ,     @   .           @           @.           @",               
-             "   ,     @   .           @           @.           @",               
-             "   ,     @   .       +@@@@     '     @.  '    ;   @",               
-             "   ,     @   .           @     @     @.  @    #   @",               
-             "   ,     @   .           @     @     @.  @    #   @",               
-             "   ,     @   .           @     @     @.  @    #   @",               
-             "    @@@@@@   ,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@#@@@",               
-             "                  :'''''''''''#+''#''''@''':'''''''''''++''''''''''':'''''''''''#+''''''''''':'''''''''''+",               
-             "                  :           @.  @    #   @           @.           @           @.           @           @",               
-             "                  :           @.  @    #   @           @.           @           @.           @           @",               
-             "                  :           @.  @    #   @        @@@@.        @@@@           @.           @        @@@@",               
-             "                  :    @@@    @.           @           @.           @     @     @.           @           @",               
-             "                  :           @.           @           @.           @     @     @.           @           @",               
-             "                  :           @.           @           @.           @     @     @.           @           @",               
-             "                  :           @.           @           @.           @     @     @.           @           @",               
-             "                  :     '     @.           @        @@@@#@@         @     '     @.  '    ;   @        @@@@",               
-             "                  :     @     @.           @           @.           @           @.  @    #   @           @",               
-             "                  :     @     @.           @           @.           @           @.  @    #   @           @",               
-             "                  :     @     @.           @           @.           @           @.  @    #   @           @",               
-             "                   @@@@@@@@@@@@,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@#@@@@@@@@@@@@@@@"}; 
-	int rates[27];
-	int counts[27];
-	for(int i=0; i<27;i++){
-		rates[i]=rand()%5;
-		counts[i]=0;
-	}
-		
-	
-	string temp="";
-		int c=0;
-		for(int i=0;i<27;i++){
-			for(int j=0;j<arr[i].length();j++){
-			
-			cout<<arr[i].at(j);
-			Sleep(1);
-		}
-		cout<<endl;
-	}
-	
-}
-
-int main() {
-	spinner();
-	cout<<"#";
-	bool **seatCheck=new bool *[COLUMNS];
-	for(int i=0; i < ROWS; i++){
-		seatCheck[i]=new bool[COLUMNS];
+void initSeatCheck(bool** arr){
+		for(int i=0; i < ROWS; i++){
+		arr[i]=new bool[COLUMNS];
 	}
 	for(int i=0; i < ROWS; i++){
 		for(int j=0; j < COLUMNS; j++){
-		seatCheck[i][j]=false;
+		arr[i][j]=false;
 		}
 	}
+}
+int main() {
+	spinner();
+	centerString(cout, "NOW WITH BASICLIB V0.2");
+	bool **seatCheck=new bool *[COLUMNS];
 	vector<Seat> unsoldSeats;
 	vector<Seat> soldSeats;
-	cout<<"!";
 
+	initSeatCheck(seatCheck);
 	for(int i=0; i < ROWS; i++){
 		for(int j=0; j < COLUMNS; j++){
 			Seat s;

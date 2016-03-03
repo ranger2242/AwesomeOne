@@ -294,13 +294,13 @@ void programCredits()
     sep(cout);
     centerString(cout, "Movie Theater Program by Team Awesome");
     sep(cout);
-    centerString("Lead Programmer: Chris \'Code Monkey\' Cavazos");
-    centerString("Programmers: Jacob Gibson\n");
-    centerString("             Celeste Avila\n");
+    centerString(cout, "Lead Programmer: Chris \'Code Monkey\' Cavazos");
+    centerString(cout, "Programmers: Jacob Gibson\n");
+    centerString(cout,"             Celeste Avila\n");
     sep(cout);
-    centerString("             Tech Support\n");
-    centerString("E-mail:  NotAFakeEmail@myspace.com\n");
-    centerString("Phone Number:  (555)-968-7223\n");
+    centerString(cout,"             Tech Support\n");
+    centerString(cout,"E-mail:  NotAFakeEmail@myspace.com\n");
+    centerString(cout, "Phone Number:  (555)-968-7223\n");
 }
 void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 	char choice;

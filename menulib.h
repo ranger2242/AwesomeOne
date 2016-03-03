@@ -241,15 +241,16 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {
     char c;
 
-    cout<< setw(61)<< " _______________________________________________\n"
+    cout<< setw(64)<< " _______________________________________________\n"
         << endl
-        << setw(61)<< "|    How many tickets would you like to buy?    |\n"
-        << setw(61)<< "|                                               |\n"
-        << setw(61)<< "|  A. One Ticket(1)                             |\n"
-        << setw(61)<< "|                                               |\n"
-        << setw(61)<< "|  B. Block of Tickets(2+)                      |\n"
-        << setw(61)<< "|                                               |\n"
-        << setw(61)<< " _______________________________________________  "<< endl;
+        << setw(64)<< "|    How many tickets would you like to buy?    |\n"
+        << setw(64)<< "|                                               |\n"
+        << setw(64)<< "|  A. One Ticket(1)                             |\n"
+        << setw(64)<< "|                                               |\n"
+        << setw(64)<< "|  B. Block of Tickets(2+)                      |\n"
+        << setw(64)<< "|                                               |\n"
+        << setw(64)<< " _______________________________________________  "
+        << setw(58)<< "Enter menu choice:";
         cin.ignore();
 		cin >> c;
 
@@ -285,7 +286,8 @@ void printMenuOptions(){
 	<< setw(61)<< "| E. Program Information               |\n"
 	<< setw(61)<< "|                                      |\n"
 	<< setw(61)<< "| #. Exit                              |\n"
-	<< setw(61)<< " ______________________________________  "<< endl;
+	<< setw(61)<< " ______________________________________  "
+	<< setw(58)<< "Enter menu choice:";
 }
 
 //Author: Jacob
@@ -305,7 +307,7 @@ void programCredits()
 void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 	char choice;
 	printMenuOptions();
-
+	
 	cin >> choice;
 
 	while(choice!='#'){

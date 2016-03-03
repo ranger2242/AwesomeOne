@@ -10,14 +10,6 @@ using namespace std;
 #endif // FILEIO_H_INCLUDED
 
 //Author: Jacob
-void pause()
-{
-
-	system("PAUSE");
-	system("CLS");
-}
-
-//Author: Jacob
 void readInData(bool arr[ROWS][COLUMNS])
 {
     system("CLS");

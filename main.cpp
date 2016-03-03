@@ -15,10 +15,12 @@ Date: 3/11/2016
 #include <algorithm>
 #include <stdio.h>
 #include <windows.h>
+#include <string>
 #include "basiclib.h"
 
 using namespace std;
 void displayLogo();
+void spinner();
 
 //Constants for theater dimensions
 const int COLUMNS = 16, ROWS = 10;
@@ -281,7 +283,7 @@ void displayLogo()
 {
         sep(cout);
         Sleep(750);
-        cout << "    _______                                                                    " << endl;
+        cout << "" << endl;
         Sleep(750);
         cout << "   |__   __|                       /\\                                          " << endl;
         Sleep(750);
@@ -294,18 +296,59 @@ void displayLogo()
         cout << "      |_|\\___|\\__,_|_| |_| |_| /_/    \\_\\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___|\n\n" << endl;
         Sleep(750);
         sep(cout);
+        
 }
 void spinner(){
-	char arr[4]={'|','\\','-','/'};
-	for(int i=0; i<2000; i++){
-		cout<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<" ";
-		system("CLS");
-		Sleep(16);
+	 string arr[]={	                                                                                                                                                                                                                                                                    
+             ":''''''''''';+''''''''''':'''''''''''#+'''''''''''`                                                       ",                
+             ":           @.           @           @.           @",               
+             ":           @.           @           @.           @",               
+             ".@@@     @@@@.       +@@@@           @.           @",               
+             "   ,     @   .           @    @@@    @.           @",               
+             "   ,     @   .           @           @.           @",               
+             "   ,     @   .           @           @.           @",               
+             "   ,     @   .           @           @.           @",               
+             "   ,     @   .       +@@@@     '     @.  '    ;   @",               
+             "   ,     @   .           @     @     @.  @    #   @",               
+             "   ,     @   .           @     @     @.  @    #   @",               
+             "   ,     @   .           @     @     @.  @    #   @",               
+             "    @@@@@@   ,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@#@@@",               
+             "                  :'''''''''''#+''#''''@''':'''''''''''++''''''''''':'''''''''''#+''''''''''':'''''''''''+",               
+             "                  :           @.  @    #   @           @.           @           @.           @           @",               
+             "                  :           @.  @    #   @           @.           @           @.           @           @",               
+             "                  :           @.  @    #   @        @@@@.        @@@@           @.           @        @@@@",               
+             "                  :    @@@    @.           @           @.           @     @     @.           @           @",               
+             "                  :           @.           @           @.           @     @     @.           @           @",               
+             "                  :           @.           @           @.           @     @     @.           @           @",               
+             "                  :           @.           @           @.           @     @     @.           @           @",               
+             "                  :     '     @.           @        @@@@#@@         @     '     @.  '    ;   @        @@@@",               
+             "                  :     @     @.           @           @.           @           @.  @    #   @           @",               
+             "                  :     @     @.           @           @.           @           @.  @    #   @           @",               
+             "                  :     @     @.           @           @.           @           @.  @    #   @           @",               
+             "                   @@@@@@@@@@@@,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@#@@@@@@@@@@@@@@@"}; 
+	int rates[27];
+	int counts[27];
+	for(int i=0; i<27;i++){
+		rates[i]=rand()%5;
+		counts[i]=0;
 	}
+		
+	
+	string temp="";
+		int c=0;
+		for(int i=0;i<27;i++){
+			for(int j=0;j<arr[i].length();j++){
+			
+			cout<<arr[i].at(j);
+			Sleep(4);
+		}
+		cout<<endl;
+	}
+	
 }
 int main() {
 	spinner();
-	displayLogo();
+	//displayLogo();
 
     //Display team logo of awesome
 

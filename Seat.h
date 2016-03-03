@@ -4,7 +4,7 @@ struct Patron
 {
     std::string ID; //Patron number from 001 to 160
     std::string Name; //Patron first and last name
-    std::string PhoneNumber; 
+    std::string PhoneNumber; //Done as string for formatting
 };
 //Author: Jacob
 //Seat structure to hold location, price, status, and patron ID

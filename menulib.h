@@ -58,13 +58,17 @@ void PhoneNumberFormatter(string PhoneNumber)
 }
 //Auth:Chris
 void generateReport(ostream & str, vector<Seat> sold){
+	cls();
 	int total=0;
 	for(int i=0; i<sold.size();i++){
 		Seat s = sold.at(i);
-		cout<<"("<<s.Number<<","<<s.Row<<")"<<"\t\t"<<s.SeatID<<"\t\t"<<s.p.Name<<"\t\t"<<s.Price<<endl;
+		str<<"("<<s.Number<<","<<s.Row<<")"<<"\t\t"<<s.SeatID<<"\t\t"<<s.p.Name<<"\t\t"<<s.Price<<endl;
 		total+=s.Price;
 	}
-	cout<<"TOTAL:"<<total;
+	sep(str);
+	str<<"TOTAL: $"<<total << endl << endl;
+	sep(str);
+	pause();
 }
 
 //Author: Chris and Jacob
@@ -229,13 +233,15 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 //Auth:Chris and Jacob
 void displaySeatingChart(ostream & str,bool** arr){
 	//Heading to chart
-	centerString(str,"\nHUNTINGTON PLAYHOUSE");
+	cls();
+	str << endl;
+	centerString(str,"HUNTINGTON PLAYHOUSE");
 	centerString(str,"SEATING CHART");
 	str<<endl;
 	centerString(str, "Rear\n");
 	str << setw(21) << " " << "Seat                   1 1 1 1 1 1 1" << endl;
-	str << setw(19) << " " << "Row 1 2 3 4 5 6 7 8    9 0 1 2 3 4 5 6" << endl;
-	centerString(str, "aisle");
+	str << setw(19) << " " << "Row   1 2 3 4 5 6 7 8  9 0 1 2 3 4 5 6" << endl;
+	centerString(str, " Aisle");
 	
 	string temp;
 	for(int i=ROWS - 1; i >= 0; i--){
@@ -257,10 +263,8 @@ void displaySeatingChart(ostream & str,bool** arr){
 		temp=to_string(i+1)+" "+temp;
 		centerString(str,temp);
 	}
-	str<<endl;
 	//Footing
-	centerString(str, "Front");
-	pause();
+	centerString(str, " Front");
 }
 //second menu prompts user how many tickets they want to buy
 void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
@@ -319,6 +323,7 @@ void printMenuOptions(){
 }
 
 //Author: Jacob
+//Gives Program information and Technical Support
 void programCredits()
 {
 	cls();
@@ -340,23 +345,23 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 	printMenuOptions();
 	
 	cin >> choice;
-
+	
 	while(choice!='#'){
 		switch(choice)
 		{
 		    case 'a':
 			case 'A':
-				displaySeatingChart(cout, seatCheck);//call
+				displaySeatingChart(cout, seatCheck);
 				break;
 
             case 'b':
 			case 'B':
-			    ticketSalesMenu(unsold, sold, seatCheck);//call
+			    ticketSalesMenu(unsold, sold, seatCheck);
 				break;
 
             case 'c':
 			case 'C': 
-			    searchPatron();//call
+			    searchPatron();
 				cout<<endl;
 				break;
 
@@ -368,15 +373,16 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
             case 'e':
             case 'E':
-                programCredits();//call
+                programCredits();
+                pause();
                 break;
 
 			case '#':
 				cout<<"EXIT"<<endl;
 				break;
 			default:
-				cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
-				cin>>choice;
+				cout<<setw(47)<<endl<<"Invalid choice. Press Enter to try again."<<endl<<endl<<endl;
+				pause();
 		}
 		printMenuOptions();
 		cin>>choice;

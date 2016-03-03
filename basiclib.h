@@ -15,10 +15,10 @@ using namespace std;
 #endif //HEADER_BASICLIB_H
 #define _CRT_SECURE_NO_WARNINGS 
 
-int scrWidth=80;
+int width=80;
 void sep(ostream &str){
     string s="";
-    s.append(scrWidth,'-');
+    s.append(width,'-');
     str<<s<<endl;
 }
 
@@ -33,7 +33,7 @@ string calcDate(){
     return date;
 }
 void centerString(ostream& str, string s){
-    int halfWid=scrWidth/2;
+    int halfWid=width/2;
     int halfStr=s.length()/2;
     int offset=halfWid+halfStr;
     str<<setw(offset)<<right<<s<<endl;

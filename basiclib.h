@@ -77,6 +77,12 @@ void cls(){
 	system("CLS");
 }
 
+//Author: Jacob
+void pause()
+{
+	system("PAUSE");
+	system("CLS");
+}
 
 string calcDate(){
     time_t current = time(0);

@@ -56,6 +56,16 @@ void PhoneNumberFormatter(string PhoneNumber)
     }
 
 }
+//Auth:Chris
+void generateReport(ostream & str, vector<Seat> sold){
+	int total=0;
+	for(int i=0; i<sold.size();i++){
+		Seat s = sold.at(i);
+		cout<<"("<<s.Number<<","<<s.Row<<")"<<"\t\t"<<s.SeatID<<"\t\t"<<s.p.Name<<"\t\t"<<s.Price<<endl;
+		total+=s.Price;
+	}
+	cout<<"TOTAL:"<<total;
+}
 
 //Author: Chris and Jacob
 Patron searchPatron(){
@@ -351,7 +361,8 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 				break;
 
             case 'd':
-			case 'D': //call
+			case 'D': 
+				generateReport(cout,sold);
 				cout<<endl;
 				break;
 

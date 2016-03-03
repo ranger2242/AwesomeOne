@@ -8,8 +8,14 @@
 	</File>
 </CodeBlocks_layout_file>
 [Editors]
+<<<<<<< HEAD
+Order=0,3,1,2,4
+<<<<<<< HEAD
+Focused=4
+=======
 Order=0,3,1
 Focused=3
+>>>>>>> origin/master
 [Editor_0]
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -58,17 +64,74 @@ LeftChar=1
 CursorCol=1
 =======
 CursorCol=1
+<<<<<<< HEAD
+=======
+Focused=1
+CursorRow=40
+TopLine=25
+LeftChar=1
+[Editor_0]
+<<<<<<< HEAD
+CursorCol=2
+>>>>>>> origin/master
+=======
+CursorCol=60
+>>>>>>> refs/remotes/origin/Chris
+CursorRow=39
+<<<<<<< HEAD
+TopLine=34
+=======
+TopLine=33
+>>>>>>> origin/master
+LeftChar=1
+[Editor_1]
+CursorCol=3
+CursorRow=58
+TopLine=46
+LeftChar=1
+[Editor_2]
+CursorCol=1
+CursorRow=11
+TopLine=10
+LeftChar=1
+[Editor_3]
+<<<<<<< HEAD
+CursorCol=75
+CursorRow=64
+TopLine=50
+=======
+CursorCol=1
+CursorRow=12
+TopLine=7
+>>>>>>> origin/master
+LeftChar=1
+[Editor_5]
+=======
 CursorRow=20
 TopLine=44
 LeftChar=1
 [Editor_1]
+>>>>>>> origin/master
 CursorCol=1
 >>>>>>> origin/master
 CursorRow=1
 TopLine=8
 LeftChar=1
+<<<<<<< HEAD
+[Editor_4]
+CursorCol=12
+CursorRow=11
+TopLine=1
+=======
 [Editor_3]
+<<<<<<< HEAD
+CursorCol=62
+CursorRow=27
+TopLine=17
+>>>>>>> origin/master
+=======
 CursorCol=22
 CursorRow=247
 TopLine=247
+>>>>>>> origin/master
 LeftChar=1

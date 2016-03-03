@@ -36,8 +36,12 @@ void initSeatCheck(bool** arr){
 }
 
 int main() {
+<<<<<<< HEAD
 	//spinner();
 	centerString(cout, "NOW WITH BASICLIB V0.2");
+=======
+	spinner();
+>>>>>>> origin/master
 	bool **seatCheck=new bool *[COLUMNS];
 	vector<Seat> unsoldSeats;
 	vector<Seat> soldSeats;

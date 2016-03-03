@@ -252,6 +252,7 @@ void displaySeatingChart(ostream & str,bool** arr){
 	centerString(str, "Front");
 	pause();
 }
+//second menu prompts user how many tickets they want to buy
 void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {
     char c;
@@ -264,27 +265,29 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
         << setw(64)<< "|                                               |\n"
         << setw(64)<< "|  B. Block of Tickets(2+)                      |\n"
         << setw(64)<< "|                                               |\n"
-        << setw(64)<< " _______________________________________________  "
-        << setw(58)<< "Enter menu choice:";
+        << setw(64)<< " _______________________________________________  "<<endl;
+        cout << setw(40)<< "Enter menu choice:";
         cin.ignore();
 		cin >> c;
 
 switch(c)
     {
-        case 'A':{
-        	        	purchaceSingleSeat(unsold, sold, seatCheck);
+        case 'A':
+        case 'a':
+        	        	purchaceSingleSeat(unsold, sold, seatCheck);//call
 			break;
-		}
-        case 'B':{ //call
-        	 purchaceBlockSeat(unsold, sold, seatCheck);
+		
+        case 'B': 
+        case 'b':
+        	 purchaceBlockSeat(unsold, sold, seatCheck);//call
                   cout<<endl;
                     break;
-}
-        default: //call
+	
+        default: 
                  cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
     }
 }
-
+// main menu
 void printMenuOptions(){
 	cout<< setw(61)<< " ______________________________________ \n"
 	<< endl
@@ -301,8 +304,8 @@ void printMenuOptions(){
 	<< setw(61)<< "| E. Program Information               |\n"
 	<< setw(61)<< "|                                      |\n"
 	<< setw(61)<< "| #. Exit                              |\n"
-	<< setw(61)<< " ______________________________________  "
-	<< setw(58)<< "Enter menu choice:";
+	<< setw(61)<< " ______________________________________  "<<endl;
+	cout << setw(40)<< "Enter menu choice:";
 }
 
 //Author: Jacob
@@ -333,17 +336,17 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 		{
 		    case 'a':
 			case 'A':
-				displaySeatingChart(cout, seatCheck);
+				displaySeatingChart(cout, seatCheck);//call
 				break;
 
             case 'b':
 			case 'B':
-			    ticketSalesMenu(unsold, sold, seatCheck);
+			    ticketSalesMenu(unsold, sold, seatCheck);//call
 				break;
 
             case 'c':
-			case 'C': //call
-			    searchPatron();
+			case 'C': 
+			    searchPatron();//call
 				cout<<endl;
 				break;
 
@@ -354,7 +357,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
             case 'e':
             case 'E':
-                programCredits();
+                programCredits();//call
                 break;
 
 			case '#':

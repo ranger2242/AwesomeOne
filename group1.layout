@@ -1,12 +1,15 @@
 [Editors]
 Order=0,3,1,2,4
 <<<<<<< HEAD
-Focused=3
+Focused=4
 [Editor_0]
 <<<<<<< HEAD
 CursorCol=1
 =======
 Focused=1
+CursorRow=40
+TopLine=25
+LeftChar=1
 [Editor_0]
 <<<<<<< HEAD
 CursorCol=2
@@ -22,9 +25,9 @@ TopLine=33
 >>>>>>> origin/master
 LeftChar=1
 [Editor_1]
-CursorCol=1
-CursorRow=23
-TopLine=4
+CursorCol=3
+CursorRow=58
+TopLine=46
 LeftChar=1
 [Editor_2]
 CursorCol=1
@@ -33,9 +36,9 @@ TopLine=10
 LeftChar=1
 [Editor_3]
 <<<<<<< HEAD
-CursorCol=44
-CursorRow=253
-TopLine=240
+CursorCol=75
+CursorRow=64
+TopLine=50
 =======
 CursorCol=1
 CursorRow=12
@@ -48,7 +51,7 @@ CursorRow=1
 TopLine=1
 LeftChar=1
 [Editor_4]
-CursorCol=13
-CursorRow=23
+CursorCol=12
+CursorRow=11
 TopLine=1
 LeftChar=1

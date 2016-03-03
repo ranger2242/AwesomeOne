@@ -1,4 +1,4 @@
-/*hhjhsyt
+/*
 Professor: Dr. Knox
 Class: COSC 1437 Spring 2016
 Assignment: Team Project 1: Movie Theater
@@ -6,8 +6,7 @@ Author: Jacob Gibson, Chris Cavazos, and Celeste Avila
 Leader: Chris Cavazos
 Date: 3/11/2016
 */
-//hello
-/////////////////////////////////////////////////////Change
+
 //Library Class Reader Files
 #include <vector>
 #include <iostream>
@@ -20,11 +19,11 @@ Date: 3/11/2016
 #include "fileIO.h"
 
 using namespace std;
-void displayLogo();
 void spinner();
 
 //Included here so it can use the above constants
 
+//Author: Chris
 void initSeatCheck(bool** arr){
 		for(int i=0; i < ROWS; i++){
 		arr[i]=new bool[COLUMNS];
@@ -35,6 +34,7 @@ void initSeatCheck(bool** arr){
 		}
 	}
 }
+
 int main() {
 	spinner();
 	centerString(cout, "NOW WITH BASICLIB V0.2");

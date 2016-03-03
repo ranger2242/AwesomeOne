@@ -15,7 +15,7 @@ const int COLUMNS = 16, ROWS = 10;
 //Constants for theater seating prices
 const float LOWPRICE = 25.00, MEDIUMPRICE = 35.00, HIGHPRICE = 50.00;
 
-//////////////////////////////////////////////////////////////////////////////
+
 //Author: Celeste
 void PhoneNumberFormatter(string PhoneNumber)
 {
@@ -56,6 +56,8 @@ void PhoneNumberFormatter(string PhoneNumber)
     }
 
 }
+
+//Author: Chris and Jacob
 Patron searchPatron(){
 			cls();
 			int id;
@@ -118,7 +120,6 @@ Patron createPatron(){
 	}
 	return p;
 }
-//////////////////////////////////////////////////////////////////////////////
 //Auth:Chris
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
 	Patron p=createPatron();
@@ -273,16 +274,33 @@ void printMenuOptions(){
 	<< endl
 	<< setw(61)<< "|              TICKET MENU             |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| A. Ticket Sales                      |\n"
+	<< setw(61)<< "| A. Display Seating Chart             |\n"
+    << setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| B. Ticket Sales                      |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| B. Patron Information Search         |\n"
+	<< setw(61)<< "| C. Patron Information Search         |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| C. Current Revenue                   |\n"
+	<< setw(61)<< "| D. Current Revenue                   |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| D. Information                       |\n"
+	<< setw(61)<< "| E. Program Information               |\n"
 	<< setw(61)<< "|                                      |\n"
 	<< setw(61)<< "| #. Exit                              |\n"
 	<< setw(61)<< " ______________________________________  "<< endl;
+}
+
+//Author: Jacob
+void programCredits()
+{
+    sep(cout);
+    centerString(cout, "Movie Theater Program by Team Awesome");
+    sep(cout);
+    centerString("Lead Programmer: Chris \'Code Monkey\' Cavazos");
+    centerString("Programmers: Jacob Gibson\n");
+    centerString("             Celeste Avila\n");
+    sep(cout);
+    centerString("             Tech Support\n");
+    centerString("E-mail:  NotAFakeEmail@myspace.com\n");
+    centerString("Phone Number:  (555)-968-7223\n");
 }
 void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 	char choice;
@@ -294,17 +312,18 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 		switch(choice)
 		{
 		    case 'a':
-			case 'A': //call
-				ticketSalesMenu(unsold, sold, seatCheck);
+			case 'A':
+				displaySeatingChart(cout, seatCheck);
 				break;
 
             case 'b':
-			case 'B': //call
-				searchPatron();
+			case 'B':
+			    ticketSalesMenu(unsold, sold, seatCheck);
 				break;
 
             case 'c':
 			case 'C': //call
+			    searchPatron();
 				cout<<endl;
 				break;
 
@@ -312,6 +331,11 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 			case 'D': //call
 				cout<<endl;
 				break;
+
+            case 'e':
+            case 'E':
+                programCredits();
+                break;
 
 			case '#':
 				cout<<"EXIT"<<endl;

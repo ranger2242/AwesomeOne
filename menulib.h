@@ -17,45 +17,23 @@ const float LOWPRICE = 25.00, MEDIUMPRICE = 35.00, HIGHPRICE = 50.00;
 
 
 //Author: Celeste
-void PhoneNumberFormatter(string PhoneNumber)
-{
-    int count;
-    bool testNumber = false; // bool to check if numbers are digits
+bool numberIsGood(string PhoneNumber){
+    bool isGood = true; 
 
-    // uses .length to check how many numbers are in the string
-    // also checks if values in the string are numeric values
-   while (PhoneNumber.length () != 10 || testNumber == false)
+    if (PhoneNumber.length() == 10) // checks is string array contains 10 characters
     {
-        testNumber =  true;
-        if(PhoneNumber.length() == 10)
+        for (int i = 0; i < PhoneNumber.length(); i++)
         {
-            for (count = 0; count < 10; count ++)
+            if (!isdigit(PhoneNumber[i]))  // checks is every character is a numeric value
             {
-            	/*  This needs to be fixed -chris
-                if (!isdigit (custNum[count]))
-                {
-                    testNumber = false;
-                }*/
+                isGood = false;
             }
         }
-        else
-        {
-            testNumber = false;
-        }
-        if(testNumber ==  false)
-        {
-            cout << "Please use the proper format of (999)999-9999, Try again.";  // prompts user to enter a new number
-            cin >> PhoneNumber;
-        }
-    // formats the phone number
-     PhoneNumber = PhoneNumber.insert( 0, "(" );
-     PhoneNumber = PhoneNumber.insert( 3, ")" );
-     PhoneNumber = PhoneNumber.insert( 6, "-" );
-     // displays phone number
-     cout << PhoneNumber << endl;
     }
 
+    return isGood;
 }
+
 //Auth:Chris
 void generateReport(ostream & str, vector<Seat> sold){
 	cls();

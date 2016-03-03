@@ -216,14 +216,20 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 
 }
 }
-//Auth:Chris
+//Auth:Chris and Jacob
 void displaySeatingChart(ostream & str,bool** arr){
-	centerString(str,"HUNTINGTON PLAYHOUSE");
+	//Heading to chart
+	centerString(str,"\nHUNTINGTON PLAYHOUSE");
 	centerString(str,"SEATING CHART");
 	str<<endl;
-	centerString(str, "Rear");
-	for(int i=0; i < ROWS; i++){
-		string temp="";
+	centerString(str, "Rear\n");
+	str << setw(21) << " " << "Seat                   1 1 1 1 1 1 1" << endl;
+	str << setw(19) << " " << "Row 1 2 3 4 5 6 7 8    9 0 1 2 3 4 5 6" << endl;
+	centerString(str, "aisle");
+	
+	string temp;
+	for(int i=ROWS - 1; i >= 0; i--){
+		temp="";
 		for(int j=0; j < COLUMNS; j++){
 			char c='O';
 			if(arr[i][j])c='X';
@@ -233,9 +239,18 @@ void displaySeatingChart(ostream & str,bool** arr){
 				temp.append(" ");
 			}
 		}
+		//Add line numbers to display
+		//If line is 10, append a space so centerString works correctly
+		if(i == 9)
+			temp.append(" ");
+			
+		temp=to_string(i+1)+" "+temp;
 		centerString(str,temp);
 	}
 	str<<endl;
+	//Footing
+	centerString(str, "Front");
+	pause();
 }
 void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {

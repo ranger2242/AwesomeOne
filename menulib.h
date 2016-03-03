@@ -249,8 +249,8 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
         << setw(64)<< "|                                               |\n"
         << setw(64)<< "|  B. Block of Tickets(2+)                      |\n"
         << setw(64)<< "|                                               |\n"
-        << setw(64)<< " _______________________________________________  "
-        << setw(58)<< "Enter menu choice:";
+        << setw(64)<< " _______________________________________________  "<<endl;
+        cout << setw(40)<< "Enter menu choice:";
         cin.ignore();
 		cin >> c;
 
@@ -286,8 +286,8 @@ void printMenuOptions(){
 	<< setw(61)<< "| E. Program Information               |\n"
 	<< setw(61)<< "|                                      |\n"
 	<< setw(61)<< "| #. Exit                              |\n"
-	<< setw(61)<< " ______________________________________  "
-	<< setw(58)<< "Enter menu choice:";
+	<< setw(61)<< " ______________________________________  "<<endl;
+	cout << setw(40)<< "Enter menu choice:";
 }
 
 //Author: Jacob

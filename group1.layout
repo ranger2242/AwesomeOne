@@ -1,54 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="default" />
+	<File name="menulib.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2036" topLine="51" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>
 [Editors]
-Order=0,3,1,2,4
-<<<<<<< HEAD
+Order=0,3,1
 Focused=3
 [Editor_0]
-<<<<<<< HEAD
 CursorCol=1
-=======
-Focused=1
-[Editor_0]
-<<<<<<< HEAD
-CursorCol=2
->>>>>>> origin/master
-=======
-CursorCol=60
->>>>>>> refs/remotes/origin/Chris
-CursorRow=39
-<<<<<<< HEAD
-TopLine=34
-=======
-TopLine=33
->>>>>>> origin/master
+CursorRow=20
+TopLine=44
 LeftChar=1
 [Editor_1]
 CursorCol=1
-CursorRow=23
-TopLine=4
-LeftChar=1
-[Editor_2]
-CursorCol=1
-CursorRow=11
-TopLine=10
+CursorRow=1
+TopLine=50
 LeftChar=1
 [Editor_3]
-<<<<<<< HEAD
-CursorCol=44
-CursorRow=253
-TopLine=240
-=======
-CursorCol=1
-CursorRow=12
-TopLine=7
->>>>>>> origin/master
-LeftChar=1
-[Editor_5]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_4]
-CursorCol=13
-CursorRow=23
-TopLine=1
+CursorCol=62
+CursorRow=27
+TopLine=17
 LeftChar=1

@@ -1,4 +1,4 @@
-/*
+/*hhjhsyt
 Professor: Dr. Knox
 Class: COSC 1437 Spring 2016
 Assignment: Team Project 1: Movie Theater
@@ -15,10 +15,12 @@ Date: 3/11/2016
 #include <algorithm>
 #include <stdio.h>
 #include <windows.h>
+#include <string>
 #include "basiclib.h"
 
 using namespace std;
 void displayLogo();
+void spinner();
 
 //Constants for theater dimensions
 const int COLUMNS = 16, ROWS = 10;
@@ -216,16 +218,36 @@ void printMenuOptions(){
 	<< endl
 	<< setw(61)<< "|              TICKET MENU             |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| A. Ticket Sales                      |\n"
+	<< setw(61)<< "| A. Display Seating Chart             |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| B. Patron Information Search         |\n"
+	<< setw(61)<< "| B. Purchase Single Seat              |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| C. Current Revenue                   |\n"
+	<< setw(61)<< "| C. Purchase Multiple Seats           |\n"
 	<< setw(61)<< "|                                      |\n"
-	<< setw(61)<< "| D. Information                       |\n"
+	<< setw(61)<< "| D. Search Patron Information         |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| E. Current Revenue                   |\n"
+	<< setw(61)<< "|                                      |\n"
+	<< setw(61)<< "| F. Program Credits                   |\n"
 	<< setw(61)<< "|                                      |\n"
 	<< setw(61)<< "| #. Exit                              |\n"
 	<< setw(61)<< " ______________________________________  "<< endl;
+}
+
+//Author: Jacob
+//Displays info of program and team
+void displayInfo()
+{
+    system("cls");
+    sep(cout);
+    centerString(cout, "Movie Theater Sales Program");
+    sep(cout);
+    centerString(cout, "Project Lead: Chris \"Code Monkey\" Cavazos\n");
+    centerString(cout, "Team Members: Jacob Gibson");
+    centerString(cout, "              Celeste Avila\n");
+    centerString(cout, "Technical Support: \'Try Google.com\'\n");
+    centerString(cout, "Phone Number: (555)-968-7223\n");
+    pause();
 }
 
 void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
@@ -239,19 +261,18 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 		{
 		    case 'a':
 			case 'A': //call
-
-				purchaceSingleSeat(unsold,sold,seatCheck);
-
+                displaySeatingChart(cout, seatCheck);
 				break;
 
             case 'b':
 			case 'B': //call
-				purchaceBlockSeat(unsold,sold,seatCheck);
+				purchaceSingleSeat(unsold,sold,seatCheck);
 				cout<<endl;
 				break;
 
             case 'c':
 			case 'C': //call
+			    purchaceBlockSeat(unsold,sold,seatCheck);
 				cout<<endl;
 				break;
 
@@ -259,6 +280,16 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 			case 'D': //call
 				cout<<endl;
 				break;
+
+            case 'e':
+            case 'E':
+
+                break;
+
+            case 'f':
+            case 'F':
+                displayInfo();
+                break;
 
 			case '#':
 				cout<<"EXIT"<<endl;
@@ -281,7 +312,7 @@ void displayLogo()
 {
         sep(cout);
         Sleep(750);
-        cout << "    _______                                                                    " << endl;
+        cout << "" << endl;
         Sleep(750);
         cout << "   |__   __|                       /\\                                          " << endl;
         Sleep(750);
@@ -294,18 +325,59 @@ void displayLogo()
         cout << "      |_|\\___|\\__,_|_| |_| |_| /_/    \\_\\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___|\n\n" << endl;
         Sleep(750);
         sep(cout);
+
 }
 void spinner(){
-	char arr[4]={'|','\\','-','/'};
-	for(int i=0; i<2000; i++){
-		cout<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<arr[i%4]<<" ";
-		system("CLS");
-		Sleep(16);
+	 string arr[]={
+             ":''''''''''';+''''''''''':'''''''''''#+'''''''''''`                                                       ",
+             ":           @.           @           @.           @",
+             ":           @.           @           @.           @",
+             ".@@@     @@@@.       +@@@@           @.           @",
+             "   ,     @   .           @    @@@    @.           @",
+             "   ,     @   .           @           @.           @",
+             "   ,     @   .           @           @.           @",
+             "   ,     @   .           @           @.           @",
+             "   ,     @   .       +@@@@     '     @.  '    ;   @",
+             "   ,     @   .           @     @     @.  @    #   @",
+             "   ,     @   .           @     @     @.  @    #   @",
+             "   ,     @   .           @     @     @.  @    #   @",
+             "    @@@@@@   ,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@#@@@",
+             "                  :'''''''''''#+''#''''@''':'''''''''''++''''''''''':'''''''''''#+''''''''''':'''''''''''+",
+             "                  :           @.  @    #   @           @.           @           @.           @           @",
+             "                  :           @.  @    #   @           @.           @           @.           @           @",
+             "                  :           @.  @    #   @        @@@@.        @@@@           @.           @        @@@@",
+             "                  :    @@@    @.           @           @.           @     @     @.           @           @",
+             "                  :           @.           @           @.           @     @     @.           @           @",
+             "                  :           @.           @           @.           @     @     @.           @           @",
+             "                  :           @.           @           @.           @     @     @.           @           @",
+             "                  :     '     @.           @        @@@@#@@         @     '     @.  '    ;   @        @@@@",
+             "                  :     @     @.           @           @.           @           @.  @    #   @           @",
+             "                  :     @     @.           @           @.           @           @.  @    #   @           @",
+             "                  :     @     @.           @           @.           @           @.  @    #   @           @",
+             "                   @@@@@@@@@@@@,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@@#@@@@@@@@@@@@@@@"};
+	int rates[27];
+	int counts[27];
+	for(int i=0; i<27;i++){
+		rates[i]=rand()%5;
+		counts[i]=0;
 	}
+
+
+	string temp="";
+		int c=0;
+		for(int i=0;i<27;i++){
+			for(int j=0;j<arr[i].length();j++){
+
+			cout<<arr[i].at(j);
+			Sleep(4);
+		}
+		cout<<endl;
+	}
+
 }
 int main() {
-	spinner();
-	displayLogo();
+	//spinner();
+	//displayLogo();
 
     //Display team logo of awesome
 
@@ -346,5 +418,3 @@ int main() {
 
 	return 0;
 }
-
-

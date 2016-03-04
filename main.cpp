@@ -63,6 +63,45 @@ int main() {
 	cout<<"$";
 
 	mainMenu(unsoldSeats,soldSeats,seatCheck);
+	
+	//Jacob: Plays classic Mario crescendo theme
+	//Source: http://cncpp.divilabs.com/2013/12/c-code-for-mario-theme-intro-song.html
+	
+        Beep (330,100);Sleep(100);
+        Beep (330,100);Sleep(300);
+        Beep (330,100);Sleep(300);
+        Beep (262,100);Sleep(100);
+        Beep (330,100);Sleep(300);
+        Beep (392,100);Sleep(700);
+        Beep (196,100);Sleep(700);
+        Beep (196,100);Sleep(125);
+        Beep (262,100);Sleep(125);
+        Beep (330,100);Sleep(125);
+        Beep (392,100);Sleep(125);
+        Beep (523,100);Sleep(125);
+        Beep (660,100);Sleep(125);
+        Beep (784,100);Sleep(575);
+        Beep (660,100);Sleep(575);
+        Beep (207,100);Sleep(125);
+        Beep (262,100);Sleep(125);
+        Beep (311,100);Sleep(125);
+        Beep (415,100);Sleep(125);
+        Beep (523,100);Sleep(125);
+        Beep (622,100);Sleep(125);
+        Beep (830,100);Sleep(575);
+        Beep (622,100);Sleep(575);
+        Beep (233,100);Sleep(125);
+        Beep (294,100);Sleep(125);
+        Beep (349,100);Sleep(125);
+        Beep (466,100);Sleep(125);
+        Beep (587,100);Sleep(125);
+        Beep (698,100);Sleep(125);
+        Beep (932,100);Sleep(575);
+        Beep (932,100);Sleep(125);
+        Beep (932,100);Sleep(125);
+        Beep (932,100);Sleep(125);
+        Beep (1046,675);
+        
 
 	return 0;
 }

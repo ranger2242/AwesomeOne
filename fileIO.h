@@ -15,7 +15,9 @@ void readInData(bool **seatCheck)
     system("CLS");
     //Ask user to read file data or a new blank set of data
     char answer;
-    cout << "Do you want to read data from a file instead of starting with blank data? (Y/N)" << endl;
+    title(cout,"LOAD FILE");
+    cout<<endl;
+    centerString(cout,"Do you want to read data from a file instead of starting with blank data? (Y/N)" );
     cin >> answer;
 
     if (answer == 'Y' || answer == 'y')

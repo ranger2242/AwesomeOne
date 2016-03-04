@@ -41,9 +41,12 @@ void generateReport(ostream & str, vector<Seat> sold){
 	cls();
 	title(str,"REVENUE REPORT");
 	int total=0;
+	sep(str);
+	str<<"NUM ROW  "<<setw(8)<<left<<"ID"<<setw(40)<<left<<"NAME"<<setw(6)<<"Price"<<endl;
+	sep(str);
 	for(int i=0; i<sold.size();i++){
 		Seat s = sold.at(i);
-		str<<"("<<s.Number<<","<<s.Row<<")"<<"\t\t"<<s.SeatID<<"\t\t"<<s.p.Name<<"\t\t"<<s.Price<<endl;
+		str<<" ("<<s.Number<<","<<s.Row<<")   "<<setw(8)<<left<<s.SeatID<<setw(40)<<left<<s.p.Name<<setw(6)<<s.Price<<endl;
 		total+=s.Price;
 	}
 	sep(str);
@@ -256,7 +259,8 @@ displaySeatingChart(cout,seatCheck);
 //Auth:Chris and Jacob
 void displaySeatingChart(ostream & str,bool** arr){
 	//Heading to chart
-	//cls();
+	cls();
+	title(str,"SEATING CHART");
 	str << endl;
 	centerString(str,"HUNTINGTON PLAYHOUSE");
 	centerString(str,"SEATING CHART");

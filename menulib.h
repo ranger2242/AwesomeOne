@@ -37,7 +37,7 @@ bool numberIsGood(string PhoneNumber){
 //Auth:Chris
 void generateReport(ostream & str, vector<Seat> sold){
 	cls();
-	title(cout,"REVENUE REPORT");
+	title(str,"REVENUE REPORT");
 	int total=0;
 	for(int i=0; i<sold.size();i++){
 		Seat s = sold.at(i);
@@ -320,21 +320,55 @@ void printMenuOptions(){
 }
 
 //Author: Jacob
-//Gives Program information and Technical Support
+//Gives Program information and Technical Support while playing Mario theme music
+//MMusic Source: http://cncpp.divilabs.com/2013/12/c-code-for-mario-theme-intro-song.html
 void programCredits()
 {
 	cls();
-    sep(cout);
+		Beep (330,100);Sleep(100);
+    	Beep (330,100);Sleep(300);
+		Beep (330,100);Sleep(300);
+	sep(cout);	
+		Beep (262,100);Sleep(100);
+    	Beep (330,100);Sleep(300);
+    	Beep (392,100);Sleep(700);
     centerString(cout, "Movie Theater Program by Team Awesome");
-    sep(cout);
-    centerString(cout, "Lead Programmer: Chris \'Code Monkey\' Cavazos");
-    centerString(cout, "Programmers: Jacob \'The Error\' Gibson");
-    centerString(cout,"              Celeste \'Bug Buster\' Avila");
-    sep(cout);
-    centerString(cout,"   Tech Support\n");
-    centerString(cout,"E-mail:  NotAFakeEmail@myspace.com\n");
-    centerString(cout, "Phone Number:  (555)-968-7223\n");
-    pause();
+    	Beep (196,100);Sleep(700);
+        Beep (196,100);Sleep(125);
+        Beep (262,100);Sleep(125);
+    sep(cout);    
+    	Beep (330,100);Sleep(125);
+        Beep (392,100);Sleep(125);
+        Beep (523,100);Sleep(125);
+    centerString(cout, "Lead Programmer: Chris \'Code Monkey\' Cavazos");    
+    	Beep (660,100);Sleep(125);
+        Beep (784,100);Sleep(575);
+        Beep (660,100);Sleep(575);
+    centerString(cout, "Programmers: Jacob \'The Error\' Gibson");  
+		Beep (207,100);Sleep(125);
+        Beep (262,100);Sleep(125);
+        Beep (311,100);Sleep(125);
+    centerString(cout,"              Celeste \'Bug Buster\' Avila");    
+		Beep (415,100);Sleep(125);
+        Beep (523,100);Sleep(125);
+        Beep (622,100);Sleep(125);
+    sep(cout);    
+		Beep (830,100);Sleep(575);
+        Beep (622,100);Sleep(575);
+        Beep (233,100);Sleep(125);
+    centerString(cout,"   Tech Support\n");  
+		Beep (294,100);Sleep(125);
+        Beep (349,100);Sleep(125);
+        Beep (466,100);Sleep(125);
+    centerString(cout,"E-mail:  NotAFakeEmail@gmail.com\n");    
+		Beep (587,100);Sleep(125);
+        Beep (698,100);Sleep(125);
+        Beep (932,100);Sleep(575);
+	centerString(cout, "Phone Number:  (555)-968-7223\n");
+        Beep (932,100);Sleep(125);
+        Beep (932,100);Sleep(125);
+        Beep (932,100);Sleep(125);
+        Beep (1046,675);
 }
 
 void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){

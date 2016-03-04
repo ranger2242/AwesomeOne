@@ -10,7 +10,7 @@ using namespace std;
 #endif // FILEIO_H_INCLUDED
 
 //Author: Jacob
-void readInData(bool arr[ROWS][COLUMNS])
+void readInData(bool **seatCheck)
 {
     system("CLS");
     //Ask user to read file data or a new blank set of data
@@ -26,7 +26,7 @@ void readInData(bool arr[ROWS][COLUMNS])
         ifstream SeatingFile;
         SeatingFile.open("SeatingData.csv");
 
-        //If file fails to open, return to menu so user can exit program
+        //If file fails to open, return to menu
         if(SeatingFile.fail())
         {
             cout << "The seating chart file failed to open." << endl;
@@ -44,7 +44,7 @@ void readInData(bool arr[ROWS][COLUMNS])
             {
                 getline(SeatingFile, tempStr, ',');
                 tempInt = atoi(tempStr.c_str());
-                arr[j][i] = static_cast<bool>(tempInt);
+                seatCheck[j][i] = static_cast<bool>(tempInt);
             }
         }
 
@@ -86,6 +86,7 @@ void readInData(bool arr[ROWS][COLUMNS])
         pause();
     }
 
+
     else
     {
         cout << "Resetting all data values" << endl;
@@ -95,7 +96,7 @@ void readInData(bool arr[ROWS][COLUMNS])
         {
             for(int j = 0; j < ROWS; j++)
             {
-                arr[j][i] = false;
+                seatCheck[j][i] = false;
             }
         }
 
@@ -111,7 +112,7 @@ void readInData(bool arr[ROWS][COLUMNS])
 }
 
 //Author: Jacob
-void writeOutData(bool arr[ROWS][COLUMNS])
+void writeOutData(bool **seatCheck, vector<Seat> soldSeats)
 {
     //Output seating data
     ofstream SeatingFile;
@@ -129,7 +130,7 @@ void writeOutData(bool arr[ROWS][COLUMNS])
     {
         for(int j = 0; j < ROWS; j++)
         {
-            SeatingFile << arr[j][i] << ",";
+            SeatingFile << seatCheck[j][i] << ",";
         }
         SeatingFile << endl;
     }
@@ -147,7 +148,7 @@ void writeOutData(bool arr[ROWS][COLUMNS])
         pause();
     }
 
-    //displaySeatingChart(SeatingReport, arr);
+    //generateReport(SeatingReport, soldSeats);
 
     SeatingReport.close();
 
@@ -179,7 +180,7 @@ void writeOutData(bool arr[ROWS][COLUMNS])
         pause();
     }
 
-    //displayCurrentRevenue(SalesReport);
+    generateReport(SalesReport, soldSeats);
 
     SalesReport.close();
 }

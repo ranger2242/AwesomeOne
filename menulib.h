@@ -37,6 +37,7 @@ bool numberIsGood(string PhoneNumber){
 //Auth:Chris
 void generateReport(ostream & str, vector<Seat> sold){
 	cls();
+	title(cout,"REVENUE REPORT");
 	int total=0;
 	for(int i=0; i<sold.size();i++){
 		Seat s = sold.at(i);
@@ -72,7 +73,7 @@ Patron searchPatron(){
 		}
 }
 Patron createPatron(){
-	cls();
+	//cls();
 			Patron p;
 
 	title(cout,"ACCOUNT INFO");
@@ -107,7 +108,7 @@ Patron createPatron(){
 			}
 		}
 		p.ID= to_string(id);
-		cout<<"Your ID is:"<<id<<endl;
+		title(cout,"Your ID is:"+p.ID);
 		sep(cout);
 	}
 	return p;
@@ -118,7 +119,8 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 	Seat temp;
 	int index ,x,y;
 	bool check=false;
-
+	cout<<endl<<endl;
+	title(cout,"PURCHASE SINGLE SEAT");
 	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"2 5\")\n";
 	cin.ignore();
 	cin>>x>>y;
@@ -150,8 +152,22 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
 	Patron p=createPatron();
 	int x,x2,y,y2;
-	cout<<"Block Seat purchase.";
-	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"x y x2 y2\")\n";
+	cout<<endl<<endl;
+	title(cout,"PURCHASE SEAT BLOCK");
+	cout<<"Seats must be in either a column, row, or rectangle"<<endl;
+	cout<<"Please enter seat row and seat number separated by a space.\n(ex. \"x1 y1 x2 y2\")\n";
+
+	centerString(cout,"   _______________" );
+	centerString(cout,"  |        (x2,y2)|" );
+	centerString(cout,"  |               |" );
+	centerString(cout,"  |               |" );
+	centerString(cout,"  |               |" );
+	centerString(cout,"  |               |" );
+	centerString(cout,"  |               |" );
+	centerString(cout,"  |(x1,y1)        |" );
+	centerString(cout,"   ---------------" );
+
+	cout<<"Enter Here:";
 	cin.ignore();
 	cin>>x>>y>>x2>>y2;
 	vector<Seat> conflicts;
@@ -198,20 +214,23 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 				if(check) {
 					cout << "Seat Col:" << j << " Row:" << k << " purchased." << endl;
 					unsold.erase(unsold.begin() + index);
-					cout << unsold.size() << " seats remaining" << endl;
-					displaySeatingChart(cout, seatCheck);
+					cout << unsold.size() << " seats remaining" << endl<<endl;
+					//displaySeatingChart(cout, seatCheck);
 				}else{
 					cout<<"Seat is unavalable for purchase."<<endl;
 				}
+				//Sleep(16);
 			}
 			}
 
 }
+	
+displaySeatingChart(cout,seatCheck);
 }
 //Auth:Chris and Jacob
 void displaySeatingChart(ostream & str,bool** arr){
 	//Heading to chart
-	cls();
+	//cls();
 	str << endl;
 	centerString(str,"HUNTINGTON PLAYHOUSE");
 	centerString(str,"SEATING CHART");

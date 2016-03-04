@@ -49,12 +49,12 @@ int main() {
 			Seat s;
 			s.Number=i;
 			s.Row=j;
-			if(i>0 || i<5){
+			if(i>=0 && i<4){
 				s.Price=HIGHPRICE;
 			}
-			else if( i>=5 ||i<9){
+			else if( i>=5 &&i<8){
 				s.Price=MEDIUMPRICE;
-			}else if(i>=9 ||i<16){
+			}else if(i>=8 &&i<10){
 				s.Price=LOWPRICE;
 			}
 			unsoldSeats.push_back(s);

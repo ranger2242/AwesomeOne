@@ -19,10 +19,10 @@ Focused=3
 [Editor_0]
 <<<<<<< HEAD
 <<<<<<< HEAD
-CursorCol=4
+CursorCol=18
 =======
 Focused=1
-CursorRow=39
+CursorRow=52
 TopLine=34
 LeftChar=1
 [Editor_0]
@@ -40,20 +40,20 @@ TopLine=33
 >>>>>>> origin/master
 LeftChar=1
 [Editor_1]
-CursorCol=1
-CursorRow=23
-TopLine=115
+CursorCol=10
+CursorRow=91
+TopLine=72
 LeftChar=1
 [Editor_2]
-CursorCol=1
-CursorRow=11
+CursorCol=13
+CursorRow=15
 TopLine=10
 LeftChar=1
 [Editor_3]
 <<<<<<< HEAD
-CursorCol=39
-CursorRow=15
-TopLine=6
+CursorCol=26
+CursorRow=153
+TopLine=151
 =======
 CursorCol=1
 CursorRow=12

@@ -1,12 +1,14 @@
 #include <vector>
 #include <iostream>
+#include <ctime>
 #include "Seat.h"
 #include "basiclib.h"
 using namespace std;
 void ticketSalesMenu ();
 void printMenuOptions();
 void displaySeatingChart(ostream &,bool**);
-void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) ;
+void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck);
+Patron createPatron(vector<Seat> sold);
 
 static vector<Patron> people;
 
@@ -51,12 +53,17 @@ void generateReport(ostream & str, vector<Seat> sold){
 }
 
 //Author: Chris and Jacob
-Patron searchPatron(){
+Patron searchPatron(vector<Seat> sold){
 			cls();
 			int id;
 		title(cout, "ACCOUNT SEARCH");
 		cout<<"Please enter your ID number:";
 		cin>>id;
+		while (id > 160 || id < 1)
+		{
+			cout << "\nThat was an invalid ID. Please re-enter your ID:" << endl;
+			cin >> id;
+		}
 		int index;
 		bool found=false;
 		for(int i=0;i<people.size();i++){
@@ -66,13 +73,31 @@ Patron searchPatron(){
 			}
 		}
 		if(found){
+			//Vector for this patron's seats
+			vector<Seat> tempSeats;
+			
+			//If ID's are equal, add it to temp vector
+			for(int i = 0; i < sold.size(); i++)
+			{
+				if (sold.at(i).SeatID == to_string(id))
+				{
+					tempSeats.push_back(sold.at(i));
+				}
+			}
+			
+			//Show this patron's seats
+			generateReport(cout, tempSeats);
 			return people.at(index);
 		}
 		else{
 			centerString(cout,"---RECORD NOT FOUND---");
+			return createPatron(sold);
 		}
 }
-Patron createPatron(){
+//Chris
+Patron createPatron(vector<Seat> sold){
+	//Seed random generator
+	srand(time(0));
 	//cls();
 			Patron p;
 
@@ -81,7 +106,7 @@ Patron createPatron(){
 	char input;
 	cin>>input;
 	if(input=='y'){
-		searchPatron();
+		searchPatron(sold);
 	}else if(input =='n'){
 			cls();
 		title(cout,"ACCOUNT SETUP");
@@ -108,6 +133,7 @@ Patron createPatron(){
 			}
 		}
 		p.ID= to_string(id);
+		people.push_back(p);
 		title(cout,"Your ID is:"+p.ID);
 		sep(cout);
 	}
@@ -115,7 +141,7 @@ Patron createPatron(){
 }
 //Auth:Chris
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
-	Patron p=createPatron();
+	Patron p=createPatron(sold);
 	Seat temp;
 	int index ,x,y;
 	bool check=false;
@@ -150,7 +176,7 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 }
 //Auth:Chris
 void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
-	Patron p=createPatron();
+	Patron p=createPatron(sold);
 	int x,x2,y,y2;
 	cout<<endl<<endl;
 	title(cout,"PURCHASE SEAT BLOCK");
@@ -392,7 +418,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 
             case 'c':
 			case 'C': 
-			    searchPatron();
+			    searchPatron(sold);
 				cout<<endl;
 				break;
 

@@ -114,7 +114,7 @@ TRYAGAIN:
 	cin>>input;
 	if(input=='y')	//If yes, look for patron
 	{	
-		searchPatron(sold);
+		p = searchPatron(sold);
 	}
 	
 	else if(input =='n')	//Otherwise, create new patron
@@ -310,7 +310,8 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {
     char c;
 
-    cout<< setw(64)<< " _______________________________________________ \n"
+    cout<< setw(64)<< "                                                 \n"
+		<< setw(64)<< " _______________________________________________ \n"
     	<< setw(64)<< "|                                               |\n"
         << setw(64)<< "|    How many tickets would you like to buy?    |\n"
         << setw(64)<< "|                                               |\n"
@@ -413,7 +414,10 @@ void programCredits()
         Beep (1046,675);
 }
 
+//Author: Chris and Jacob
 void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
+
+	BEGIN:		//Location for beginning again if exit is not confirmed
 	char choice;
 	printMenuOptions();
 	
@@ -425,6 +429,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 		    case 'a':
 			case 'A':
 				displaySeatingChart(cout, seatCheck);
+				pause();
 				break;
 
             case 'b':
@@ -449,15 +454,19 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
                 pause();
                 break;
 
-			case '#':
-				cout<<"EXIT"<<endl;
-				break;
+				
 			default:
 				cout<<setw(47)<<endl<<"Invalid choice. Press Enter to try again."<<endl<<endl<<endl;
 				pause();
 		}
+		
 		printMenuOptions();
 		cin>>choice;
 	}
-
+	
+	char confirm;		//Confirm program exit
+	cout << "Are you sure you want to Exit? (Y/N)" << endl;
+	cin >> confirm;
+	if (confirm != 'y' && confirm != 'Y')
+		goto BEGIN;
 }

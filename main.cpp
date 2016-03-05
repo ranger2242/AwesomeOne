@@ -54,10 +54,10 @@ int main() {
 			Seat s;
 			s.Number=i;
 			s.Row=j;
-			if(i>=0 && i<4){
+			if(i>=0 && i<3){
 				s.Price=HIGHPRICE;
 			}
-			else if( i>=5 &&i<8){
+			else if( i>=4 &&i<7){
 				s.Price=MEDIUMPRICE;
 			}else if(i>=8 &&i<10){
 				s.Price=LOWPRICE;

@@ -84,7 +84,7 @@ void readInData(bool **seatCheck, vector<Seat> &soldSeats, vector<Patron> &peopl
 			tempSeat.p.Name = temp;
 			tempPatron.Name = temp;
 			getline(SalesFile, temp, ',');
-			tempPatron.PhoneNumber = temp;
+			tempSeat.p.PhoneNumber = temp;
 			getline(SalesFile, temp, '\n');
 			tempSeat.Price = atof(temp.c_str());
 			

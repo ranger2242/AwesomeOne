@@ -9,7 +9,7 @@
 </CodeBlocks_layout_file>
 [Editors]
 <<<<<<< HEAD
-Order=0,3,1,2,4
+Order=0,3,2,1,4
 <<<<<<< HEAD
 Focused=3
 =======
@@ -19,11 +19,11 @@ Focused=3
 [Editor_0]
 <<<<<<< HEAD
 <<<<<<< HEAD
-CursorCol=18
+CursorCol=26
 =======
 Focused=1
-CursorRow=52
-TopLine=1
+CursorRow=62
+TopLine=45
 LeftChar=1
 [Editor_0]
 <<<<<<< HEAD
@@ -40,20 +40,20 @@ TopLine=33
 >>>>>>> origin/master
 LeftChar=1
 [Editor_1]
-CursorCol=2
-CursorRow=91
-TopLine=106
+CursorCol=36
+CursorRow=126
+TopLine=119
 LeftChar=1
 [Editor_2]
-CursorCol=16
-CursorRow=19
-TopLine=55
+CursorCol=13
+CursorRow=89
+TopLine=44
 LeftChar=1
 [Editor_3]
 <<<<<<< HEAD
-CursorCol=55
-CursorRow=38
-TopLine=37
+CursorCol=22
+CursorRow=451
+TopLine=449
 =======
 CursorCol=1
 CursorRow=12
@@ -119,8 +119,8 @@ TopLine=8
 LeftChar=1
 <<<<<<< HEAD
 [Editor_4]
-CursorCol=6
-CursorRow=22
+CursorCol=11
+CursorRow=16
 TopLine=1
 =======
 LeftChar=1

@@ -2,7 +2,7 @@
 //Patron structure to hold ID, name, and number
 struct Patron
 {
-    std::string ID; //Patron number from 1 to 160
+    std::string ID; //Patron number from 001 to 160
     std::string Name; //Patron first and last name
     std::string PhoneNumber; //Done as string for formatting
 };

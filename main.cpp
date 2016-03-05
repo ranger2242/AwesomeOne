@@ -37,6 +37,7 @@ void initSeatCheck(bool** arr){
 
 //Auth: Chris and Jacob
 int main() {
+	//Awesome logo display
 	spinner();
 	centerString(cout, "NOW WITH BASICLIB V0.2");
 
@@ -46,7 +47,7 @@ int main() {
 	vector<Seat> soldSeats;
 	
 	
-	//Initializing Seat Array
+	//Initializing Seat Array with appropriate prices
 	initSeatCheck(seatCheck);
 	for(int i=0; i < ROWS; i++){
 		for(int j=0; j < COLUMNS; j++){
@@ -65,12 +66,11 @@ int main() {
 		}
 	}
 	
-	//Reading in data
-	readInData(seatCheck);
-
-	mainMenu(unsoldSeats,soldSeats,seatCheck);
+	readInData(seatCheck, soldSeats, people); //Reading in data
 	
-	writeOutData(seatCheck, soldSeats);
+	mainMenu(unsoldSeats,soldSeats,seatCheck); //Transferring control flow to main menu
+	
+	writeOutData(seatCheck, soldSeats); //Writing out reports and data at end of program
 	
 	return 0;
 }

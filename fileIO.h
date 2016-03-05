@@ -10,7 +10,7 @@ using namespace std;
 #endif // FILEIO_H_INCLUDED
 
 //Author: Jacob
-void readInData(bool **seatCheck)
+void readInData(bool **seatCheck, vector<Seat> &soldSeats, vector<Patron> &people)
 {
     system("CLS");
     //Ask user to read file data or a new blank set of data
@@ -61,27 +61,36 @@ void readInData(bool **seatCheck)
         {
             cout << "The sales file failed to open." << endl;
             pause();
+            return;
         }
-
-//        //Temporary values for amount of seats sold
-//        int tempInts[3];
-//
-//        //Get seat sale numbers from file
-//        for(int i = 0; i < 3; i++)
-//        {
-//            getline(SalesFile, tempStr, ',');
-//            tempInts[i] = atoi(tempStr.c_str());
-//        }
-//
-//        lowSeatsSold = tempInts[0];
-//        medSeatsSold = tempInts[1];
-//        highSeatsSold = tempInts[2];
-//
-//       //Get totalIncome amount from file
-//       getline(SalesFile, tempStr, ',');
-//       totalIncome = atof(tempStr.c_str());
-
-
+		
+		//Read in Sales data
+		while(!SalesFile.eof())
+		{	
+			Seat tempSeat;
+			Patron tempPatron;
+			string temp;
+			
+			getline(SalesFile, temp, ',');
+			if(temp == "")					//Break loop if no value in temp
+				break;
+			tempSeat.Number = atoi(temp.c_str());
+			getline(SalesFile, temp, ',');
+			tempSeat.Row = atoi(temp.c_str());
+			getline(SalesFile, temp, ',');
+			tempSeat.SeatID = temp;
+			tempPatron.ID = temp;
+			getline(SalesFile, temp, ',');
+			tempSeat.p.Name = temp;
+			tempPatron.Name = temp;
+			getline(SalesFile, temp, ',');
+			tempPatron.PhoneNumber = temp;
+			getline(SalesFile, temp, '\n');
+			tempSeat.Price = atof(temp.c_str());
+			
+			soldSeats.push_back(tempSeat);
+			people.push_back(tempPatron);
+		}
         SalesFile.close();
 
         cout << "All data read in correctly!" << endl;
@@ -101,12 +110,6 @@ void readInData(bool **seatCheck)
                 seatCheck[j][i] = false;
             }
         }
-
-        //Set seatsSold counters and total income to zero
-//        lowSeatsSold = 0;
-//        medSeatsSold = 0;
-//        highSeatsSold = 0;
-//        totalIncome = 0;
 
         cout << "Data values reset." << endl;
         pause();
@@ -150,7 +153,7 @@ void writeOutData(bool **seatCheck, vector<Seat> soldSeats)
         pause();
     }
 
-    //generateReport(SeatingReport, soldSeats);
+    displaySeatingChart(SeatingReport, seatCheck);
 
     SeatingReport.close();
 
@@ -164,11 +167,12 @@ void writeOutData(bool **seatCheck, vector<Seat> soldSeats)
         cout << "The sales file failed to open." << endl;
         pause();
     }
-
-//    SalesFile << lowSeatsSold << ",";
-//    SalesFile << medSeatsSold << ",";
-//    SalesFile << highSeatsSold << ",";
-//    SalesFile << totalIncome << endl;
+	
+	//Iterate through sold seats and output info to file
+	for(int i=0; i<soldSeats.size();i++){
+		SalesFile << soldSeats.at(i).Number << "," << soldSeats.at(i).Row << "," << soldSeats.at(i).SeatID << ","
+		<< soldSeats.at(i).p.Name << "," << soldSeats.at(i).p.PhoneNumber << "," << soldSeats.at(i).Price << "\n";
+	}
 
     SalesFile.close();
 

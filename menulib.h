@@ -37,28 +37,33 @@ bool numberIsGood(string PhoneNumber){
 }
 
 //Auth:Chris
+//Outputs sales report to desired stream with formatting
 void generateReport(ostream & str, vector<Seat> sold){
+	//Header of report
 	cls();
 	title(str,"REVENUE REPORT");
 	int total=0;
 	sep(str);
-	str<<"NUM ROW  "<<setw(8)<<left<<"ID"<<setw(40)<<left<<"NAME"<<setw(6)<<"Price"<<endl;
+	str<<"NUM ROW  "<<setw(8)<<left<<"ID"<<setw(20)<<left<<"NAME"<<setw(20)<<left<<"PHONE"<<setw(6)<<"Price"<<endl;
 	sep(str);
+	//Body of report. Iterates through every sold seat
 	for(int i=0; i<sold.size();i++){
 		Seat s = sold.at(i);
-		str<<" ("<<s.Number<<","<<s.Row<<")   "<<setw(8)<<left<<s.SeatID<<setw(40)<<left<<s.p.Name<<setw(6)<<s.Price<<endl;
+		str<<" ("<<s.Number + 1<<","<<s.Row + 1<<")   "<<setw(8)<<left<<s.SeatID<<setw(20)<<left<<s.p.Name
+		<<setw(20)<<left<<s.p.PhoneNumber<<setw(6)<<s.Price<<endl;
 		total+=s.Price;
 	}
+	//Foot of report
 	sep(str);
 	str<<"TOTAL: $"<<total << endl << endl;
 	sep(str);
-	pause();
 }
 
 //Author: Chris and Jacob
 Patron searchPatron(vector<Seat> sold){
-			cls();
-			int id;
+		//Get's ID input
+		cls();
+		int id;
 		title(cout, "ACCOUNT SEARCH");
 		cout<<"Please enter your ID number:";
 		cin>>id;
@@ -67,6 +72,7 @@ Patron searchPatron(vector<Seat> sold){
 			cout << "\nThat was an invalid ID. Please re-enter your ID:" << endl;
 			cin >> id;
 		}
+		//Searches for ID
 		int index;
 		bool found=false;
 		for(int i=0;i<people.size();i++){
@@ -76,20 +82,16 @@ Patron searchPatron(vector<Seat> sold){
 			}
 		}
 		if(found){
-			//Vector for this patron's seats
-			vector<Seat> tempSeats;
+			vector<Seat> tempSeats; //Vector for this patron's seats
 			
-			//If ID's are equal, add it to temp vector
-			for(int i = 0; i < sold.size(); i++)
+			for(int i = 0; i < sold.size(); i++) //If ID's are equal, add it to temp vector
 			{
 				if (sold.at(i).SeatID == to_string(id))
 				{
 					tempSeats.push_back(sold.at(i));
 				}
 			}
-			
-			//Show this patron's seats
-			generateReport(cout, tempSeats);
+			generateReport(cout, tempSeats); //Show this patron's seats
 			return people.at(index);
 		}
 		else{
@@ -99,27 +101,34 @@ Patron searchPatron(vector<Seat> sold){
 }
 //Chris
 Patron createPatron(vector<Seat> sold){
-	//Seed random generator
-	srand(time(0));
-	//cls();
-			Patron p;
+	
+	srand(time(0));	//Seed random generator
+	
+	Patron p;
 
+TRYAGAIN:
+	//Check for existing account
 	title(cout,"ACCOUNT INFO");
 	cout<<"Do you have an existing account? (y/n):";
 	char input;
 	cin>>input;
-	if(input=='y'){
+	if(input=='y')	//If yes, look for patron
+	{	
 		searchPatron(sold);
-	}else if(input =='n'){
-			cls();
-		title(cout,"ACCOUNT SETUP");
+	}
+	
+	else if(input =='n')	//Otherwise, create new patron
+	{
+		cls();
+		title(cout,"ACCOUNT SETUP");	//Get input
 		cout<<"Please enter your first name, last name, and phone number below."<<endl;
 		cout<<"(ex. Dingus McNugget 3613459876)";
 		string full,first,last,number;
 		cin.ignore();
 		cin>>first>>last>>number;
 		full=first+" "+last;
-		p.Name=full;
+		//formatPhoneNumber(number);
+		p.Name=full;			//Set patron info equal to input
 		p.PhoneNumber=number;
 		bool check=false;
 		int id;
@@ -135,10 +144,16 @@ Patron createPatron(vector<Seat> sold){
 				check=true;
 			}
 		}
-		p.ID= to_string(id);
-		people.push_back(p);
+		p.ID= to_string(id);	//Convert id to string for Patron's ID
+		people.push_back(p);	//Add patron to people vector
 		title(cout,"Your ID is:"+p.ID);
 		sep(cout);
+	}
+	else	//Input Validation
+	{
+		cls();
+		cout << "\n\nThat input was invalid, re-enter: " << endl;
+		goto TRYAGAIN;	//try again if bad input was given
 	}
 	return p;
 }
@@ -248,13 +263,10 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 				}else{
 					cout<<"Seat is unavalable for purchase."<<endl;
 				}
-				//Sleep(16);
 			}
-			}
-
-}
-	
-displaySeatingChart(cout,seatCheck);
+		}
+	}
+	displaySeatingChart(cout,seatCheck);
 }
 //Auth:Chris and Jacob
 void displaySeatingChart(ostream & str,bool** arr){
@@ -270,7 +282,7 @@ void displaySeatingChart(ostream & str,bool** arr){
 	str << setw(19) << " " << "Row   1 2 3 4 5 6 7 8  9 0 1 2 3 4 5 6" << endl;
 	centerString(str, " Aisle");
 	
-	string temp;
+	string temp;				//Body of chart showing every seat
 	for(int i=ROWS - 1; i >= 0; i--){
 		temp="";
 		for(int j=0; j < COLUMNS; j++){
@@ -298,8 +310,8 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {
     char c;
 
-    cout<< setw(64)<< " _______________________________________________\n"
-        << endl
+    cout<< setw(64)<< " _______________________________________________ \n"
+    	<< setw(64)<< "|                                               |\n"
         << setw(64)<< "|    How many tickets would you like to buy?    |\n"
         << setw(64)<< "|                                               |\n"
         << setw(64)<< "|  A. One Ticket(1)                             |\n"
@@ -315,23 +327,23 @@ switch(c)
     {
         case 'A':
         case 'a':
-        	        	purchaceSingleSeat(unsold, sold, seatCheck);//call
+        	purchaceSingleSeat(unsold, sold, seatCheck);
 			break;
 		
         case 'B': 
         case 'b':
-        	 purchaceBlockSeat(unsold, sold, seatCheck);//call
-                  cout<<endl;
-                    break;
+        	purchaceBlockSeat(unsold, sold, seatCheck);
+            break;
 	
         default: 
                  cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
     }
 }
-// main menu
+//Main Menu display
 void printMenuOptions(){
-	cout<< setw(61)<< " ______________________________________ \n"
-	<< endl
+	cout 
+	<< setw(61)<< "                                        \n"
+	<< setw(61)<< " ______________________________________ \n"
 	<< setw(61)<< "|              TICKET MENU             |\n"
 	<< setw(61)<< "|                                      |\n"
 	<< setw(61)<< "| A. Display Seating Chart             |\n"
@@ -423,13 +435,12 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
             case 'c':
 			case 'C': 
 			    searchPatron(sold);
-				cout<<endl;
 				break;
 
             case 'd':
 			case 'D': 
 				generateReport(cout,sold);
-				cout<<endl;
+				pause();
 				break;
 
             case 'e':
@@ -448,7 +459,5 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 		printMenuOptions();
 		cin>>choice;
 	}
-
-
 
 }

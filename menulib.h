@@ -102,14 +102,14 @@ Patron createPatron(vector<Seat> sold){
 	//Seed random generator
 	srand(time(0));
 	//cls();
-			Patron p;
+	Patron p;
 
 	title(cout,"ACCOUNT INFO");
 	cout<<"Do you have an existing account? (y/n):";
 	char input;
 	cin>>input;
 	if(input=='y'){
-		searchPatron(sold);
+		p=searchPatron(sold);
 	}else if(input =='n'){
 			cls();
 		title(cout,"ACCOUNT SETUP");
@@ -251,6 +251,7 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 				//Sleep(16);
 			}
 			}
+			pause();
 
 }
 	

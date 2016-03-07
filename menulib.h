@@ -40,7 +40,8 @@ void generateReport(ostream & str, vector<Seat> sold){
 	str<<"TOTAL: $"<<total << endl << endl;
 	sep(str);
 }
-
+//Author: Celeste
+//Checks if phone number is 10 numbers and are all numeric values
 bool numberIsGood(string PhoneNumber){
     bool isGood = true; 
 
@@ -131,7 +132,7 @@ TRYAGAIN:
 		full=first+" "+last;
 	    
 		p.Name=full;//Set patron info equal to input
-		while (numberIsGood(number) == false)
+		while (numberIsGood(number) == false)// checks if Phone Number is valid  Author: Celeste
 		{
 		cout << "Invalid. Please use the proper format of (999)999-9999: ";
 		cin>>number;
@@ -139,8 +140,8 @@ TRYAGAIN:
 		}
 		
 		p.PhoneNumber=number;
-		cout << "(" << number.substr(0,3) << ")" //formats the phone number
-     	<< number.substr(3,3) << "-" << number.substr(6,4) << endl;
+		cout << "(" << number.substr(0,3) << ")" //author: Celeste 
+     	<< number.substr(3,3) << "-" << number.substr(6,4) << endl;//formats the phone number
 		bool check=false;
 		int id;
 		while(!check){
@@ -316,6 +317,7 @@ void displaySeatingChart(ostream & str,bool** arr){
 	//Footing
 	centerString(str, " Front");
 }
+//Author: Celeste
 //second menu prompts user how many tickets they want to buy
 void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
 {
@@ -354,6 +356,7 @@ switch(c)
                  cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
     }
 }
+// Author: Celeste
 //Main Menu display
 void printMenuOptions(){
 	cout 

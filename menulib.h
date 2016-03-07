@@ -8,7 +8,6 @@ void ticketSalesMenu ();
 void printMenuOptions();
 void displaySeatingChart(ostream &,bool**);
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck);
-bool formatPhoneNumber( bool isGood,string Number);
 bool numberIsGood(string Number);
 Patron createPatron(vector<Seat> sold);
 
@@ -40,6 +39,25 @@ void generateReport(ostream & str, vector<Seat> sold){
 	sep(str);
 	str<<"TOTAL: $"<<total << endl << endl;
 	sep(str);
+}
+
+bool numberIsGood(string PhoneNumber){
+    bool isGood = true; 
+
+    if (PhoneNumber.length() == 10) // checks is string array contains 10 characters
+    {
+        for (int i = 0; i < PhoneNumber.length(); i++)
+        {
+            if (!isdigit(PhoneNumber[i]))  // checks is every character is a numeric value
+            {
+                isGood = false;
+            }
+        }
+    }
+    else
+    	isGood = false;
+
+    return isGood;
 }
 
 //Author: Chris and Jacob
@@ -112,10 +130,16 @@ TRYAGAIN:
 		cin>>first>>last>>number;
 		full=first+" "+last;
 	    
-	    
-		p.Name=full;			//Set patron info equal to input
+		p.Name=full;//Set patron info equal to input
+		while (numberIsGood(number) == false)
+		{
+		cout << "Invalid. Please use the proper format of (999)999-9999: ";
+		cin>>number;
+		numberIsGood(number);			
+		}
+		
 		p.PhoneNumber=number;
-		cout << "(" << number.substr(0,3) << ")"
+		cout << "(" << number.substr(0,3) << ")" //formats the phone number
      	<< number.substr(3,3) << "-" << number.substr(6,4) << endl;
 		bool check=false;
 		int id;
@@ -306,6 +330,7 @@ void ticketSalesMenu(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck)
         << setw(64)<< "|                                               |\n"
         << setw(64)<< "|  B. Block of Tickets(2+)                      |\n"
         << setw(64)<< "|                                               |\n"
+        << setw(64)<< "|  C. Go back to Main Menu                      |\n"
         << setw(64)<< " _______________________________________________  "<<endl;
         cout << setw(40)<< "Enter menu choice:";
         cin.ignore();
@@ -322,7 +347,9 @@ switch(c)
         case 'b':
         	purchaceBlockSeat(unsold, sold, seatCheck);
             break;
-	
+        case 'C': 
+        case 'c':
+        	break;
         default: 
                  cout<<setw(47)<<endl<<"Invalid choice."<<endl<<endl<<endl;
     }
@@ -452,7 +479,7 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 	}
 	
 	char confirm;		//Confirm program exit
-	cout << "Are you sure you want to Exit? (Y/N)" << endl;
+	cout << setw(58) << "Are you sure you want to Exit? (Y/N) " ;
 	cin >> confirm;
 	if (confirm != 'y' && confirm != 'Y')
 		goto BEGIN;

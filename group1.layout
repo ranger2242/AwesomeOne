@@ -11,7 +11,7 @@
 <<<<<<< HEAD
 Order=0,3,2,1,4
 <<<<<<< HEAD
-Focused=3
+Focused=1
 =======
 Order=0,3,1
 Focused=3
@@ -19,11 +19,11 @@ Focused=3
 [Editor_0]
 <<<<<<< HEAD
 <<<<<<< HEAD
-CursorCol=26
+CursorCol=22
 =======
 Focused=1
-CursorRow=62
-TopLine=41
+CursorRow=28
+TopLine=28
 LeftChar=1
 [Editor_0]
 <<<<<<< HEAD
@@ -40,20 +40,20 @@ TopLine=33
 >>>>>>> origin/master
 LeftChar=1
 [Editor_1]
-CursorCol=36
-CursorRow=126
-TopLine=119
+CursorCol=38
+CursorRow=132
+TopLine=115
 LeftChar=1
 [Editor_2]
-CursorCol=13
-CursorRow=89
-TopLine=44
+CursorCol=70
+CursorRow=173
+TopLine=154
 LeftChar=1
 [Editor_3]
 <<<<<<< HEAD
-CursorCol=70
-CursorRow=20
-TopLine=6
+CursorCol=73
+CursorRow=354
+TopLine=335
 =======
 CursorCol=1
 CursorRow=12
@@ -119,8 +119,8 @@ TopLine=8
 LeftChar=1
 <<<<<<< HEAD
 [Editor_4]
-CursorCol=11
-CursorRow=16
+CursorCol=16
+CursorRow=1
 TopLine=1
 =======
 LeftChar=1

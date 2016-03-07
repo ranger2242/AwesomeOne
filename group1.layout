@@ -23,7 +23,7 @@ CursorCol=26
 =======
 Focused=1
 CursorRow=62
-TopLine=45
+TopLine=41
 LeftChar=1
 [Editor_0]
 <<<<<<< HEAD
@@ -51,9 +51,9 @@ TopLine=44
 LeftChar=1
 [Editor_3]
 <<<<<<< HEAD
-CursorCol=22
-CursorRow=451
-TopLine=449
+CursorCol=70
+CursorRow=20
+TopLine=6
 =======
 CursorCol=1
 CursorRow=12

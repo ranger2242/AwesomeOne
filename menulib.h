@@ -8,6 +8,8 @@ void ticketSalesMenu ();
 void printMenuOptions();
 void displaySeatingChart(ostream &,bool**);
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck);
+bool formatPhoneNumber( bool isGood,string Number);
+bool numberIsGood(string Number);
 Patron createPatron(vector<Seat> sold);
 
 static vector<Patron> people;
@@ -16,25 +18,6 @@ static vector<Patron> people;
 const int COLUMNS = 16, ROWS = 10;
 //Constants for theater seating prices
 const float LOWPRICE = 25.00, MEDIUMPRICE = 35.00, HIGHPRICE = 50.00;
-
-
-//Author: Celeste
-bool numberIsGood(string PhoneNumber){
-    bool isGood = true; 
-
-    if (PhoneNumber.length() == 10) // checks is string array contains 10 characters
-    {
-        for (int i = 0; i < PhoneNumber.length(); i++)
-        {
-            if (!isdigit(PhoneNumber[i]))  // checks is every character is a numeric value
-            {
-                isGood = false;
-            }
-        }
-    }
-
-    return isGood;
-}
 
 //Auth:Chris
 //Outputs sales report to desired stream with formatting
@@ -124,12 +107,16 @@ TRYAGAIN:
 		cout<<"Please enter your first name, last name, and phone number below."<<endl;
 		cout<<"(ex. Dingus McNugget 3613459876)";
 		string full,first,last,number;
+		
 		cin.ignore();
 		cin>>first>>last>>number;
 		full=first+" "+last;
-		//formatPhoneNumber(number);
+	    
+	    
 		p.Name=full;			//Set patron info equal to input
 		p.PhoneNumber=number;
+		cout << "(" << number.substr(0,3) << ")"
+     	<< number.substr(3,3) << "-" << number.substr(6,4) << endl;
 		bool check=false;
 		int id;
 		while(!check){

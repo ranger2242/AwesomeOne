@@ -44,20 +44,15 @@ void generateReport(ostream & str, vector<Seat> sold){
 //Checks if phone number is 10 numbers and are all numeric values
 bool numberIsGood(string PhoneNumber){
     bool isGood = true; 
-
     if (PhoneNumber.length() == 10) // checks is string array contains 10 characters
-    {
-        for (int i = 0; i < PhoneNumber.length(); i++)
-        {
-            if (!isdigit(PhoneNumber[i]))  // checks is every character is a numeric value
-            {
-                isGood = false;
+    {   for (int i = 0; i < PhoneNumber.length(); i++)
+        {   if (!isdigit(PhoneNumber[i]))  // checks is every character is a numeric value
+            {	isGood = false;
             }
         }
     }
     else
     	isGood = false;
-
     return isGood;
 }
 
@@ -134,14 +129,16 @@ TRYAGAIN:
 		p.Name=full;//Set patron info equal to input
 		while (numberIsGood(number) == false)// checks if Phone Number is valid  Author: Celeste
 		{
-		cout << "Invalid. Please use the proper format of (999)999-9999: ";
+		cout << "Invalid. Please enter a 10 digit number: ";
 		cin>>number;
 		numberIsGood(number);			
 		}
-		
+		number.insert(0,"(");//Formats phone number
+		number.insert(4,")");
+		number.insert(5,"-");
+		number.insert(9,"-");
 		p.PhoneNumber=number;
-		cout << "(" << number.substr(0,3) << ")" //author: Celeste 
-     	<< number.substr(3,3) << "-" << number.substr(6,4) << endl;//formats the phone number
+	
 		bool check=false;
 		int id;
 		while(!check){
@@ -171,7 +168,7 @@ TRYAGAIN:
 }
 //Auth:Chris
 void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck) {
-	Patron p=createPatron(sold);
+	Patron p=createPatron(sold); //Get current patron info
 	Seat temp;
 	int index ,x,y;
 	bool check=false;
@@ -182,24 +179,24 @@ void purchaceSingleSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatChec
 	cin>>x>>y;
 
 	cout<<endl;
-	for(int i=0; i<unsold.size();i++){
+	for(int i=0; i<unsold.size();i++){		
 		Seat s = unsold.at(i);
 		if(s.Number==x-1 && s.Row==y-1){
 			s.SetID(p);
 				people.push_back(p);
-			temp=s;
+			temp=s;						
 			index=i;
 			sold.push_back(temp);
 			check=true;
 			seatCheck[x-1][y-1]=check;
 		}
 	}
-	if(check) {
+	if(check) {			//If Sold, tell confirm to user
 		cout << "Seat Col:" << x << " Row:" << y << " purchased." << endl;
 		unsold.erase(unsold.begin() + index);
 		cout << unsold.size() << " seats remaining" << endl;
 		displaySeatingChart(cout, seatCheck);
-	}else{
+	}else{				//If already sold, inform user
 		cout<<"Seat is unavalable for purchase."<<endl;
 	}
 
@@ -228,25 +225,26 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 	cin>>x>>y>>x2>>y2;
 	vector<Seat> conflicts;
 	bool cont=true;
-	for(int j=x; j<x2; j++) {
+	for(int j=x; j<x2; j++) {	
 		for (int k = y; k < y2; k++) {
 			for (int i = 0; i < sold.size(); i++) {
-				Seat s = sold.at(i);
+				Seat s = sold.at(i);			
 				if (s.Number == j - 1 && s.Row == k - 1) {
 					cont = false;
-					conflicts.push_back(s);
+					conflicts.push_back(s);		//If the seat is sold, add it to conflicts
 				}
 			}
 		}
 	}
-	if(!cont){
+	if(!cont){ //If seat is sold already, tell user and continue
 		for(int i=0;i<conflicts.size();i++){
 			Seat s = conflicts.at(i);
-			cout<<"Seat at Col:"<<s.Number<<" Row:"<<s.Row<<" already purchased.";
+			cout<<"Seat at Col:"<<(s.Number + 1)<<" Row:"<<(s.Row+1)<<" already purchased.";
 		}
 	}
-	if(!((x2>=x || y2>=y) && cont)){
+	if(!((x2>=x || y2>=y) && cont)){	//Input validation
 		cout<<"INVALID SELECTION"<<endl;
+		pause();
 	}
 	else{
 		Seat temp;
@@ -267,11 +265,9 @@ void purchaceBlockSeat(vector<Seat> & unsold, vector<Seat>&sold, bool**seatCheck
 					seatCheck[j-1][k-1]=check;
 				}
 			}
-				if(check) {
-					cout << "Seat Col:" << j << " Row:" << k << " purchased." << endl;
+				if(check) {	//If buyer got seat, inform them
+					cout << "Seat Col:" << (j+1) << " Row:" << (k+1) << " purchased." << endl;
 					unsold.erase(unsold.begin() + index);
-					cout << unsold.size() << " seats remaining" << endl<<endl;
-					//displaySeatingChart(cout, seatCheck);
 				}else{
 					cout<<"Seat is unavalable for purchase."<<endl;
 				}
@@ -442,41 +438,33 @@ void mainMenu(vector<Seat> &unsold, vector<Seat> &sold, bool **seatCheck){
 	
 	while(choice!='#'){
 		switch(choice)
-		{
-		    case 'a':
+		{   case 'a':
 			case 'A':
 				displaySeatingChart(cout, seatCheck);
 				pause();
 				break;
-
             case 'b':
 			case 'B':
 			    ticketSalesMenu(unsold, sold, seatCheck);
 				break;
-
             case 'c':
 			case 'C': 
 			    searchPatron(sold);
 				break;
-
             case 'd':
 			case 'D': 
 				generateReport(cout,sold);
 				pause();
 				break;
-
             case 'e':
             case 'E':
                 programCredits();
                 pause();
-                break;
-
-				
+                break;	
 			default:
 				cout<<setw(47)<<endl<<"Invalid choice. Press Enter to try again."<<endl<<endl<<endl;
 				pause();
 		}
-		
 		printMenuOptions();
 		cin>>choice;
 	}

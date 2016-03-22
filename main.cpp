@@ -1,12 +1,9 @@
-/*
-Professor: Dr. Knox
-Class: COSC 1437 Spring 2016
-Assignment: Team Project 1: Movie Theater
-Author: Jacob Gibson, Chris Cavazos, and Celeste Avila
-Leader: Chris Cavazos
-Date: 3/11/2016
-*/
-
+/*	Professor: Dr. Knox
+	Class: COSC 1437 Spring 2016
+	Assignment: Team Project 1: Movie Theater
+	Author: Jacob Gibson, Chris Cavazos, and Celeste Avila
+	Leader: Chris Cavazos
+	Date: 3/22/2016 */
 //Library Class Reader Files
 #include <vector>
 #include <iostream>
@@ -17,12 +14,8 @@ Date: 3/11/2016
 #include <string>
 #include "menulib.h"
 #include "fileIO.h"
-
 using namespace std;
 void spinner();
-
-//Included here so it can use the above constants
-
 //Author: Chris
 void initSeatCheck(bool** arr){
 		for(int i=0; i < ROWS; i++){
@@ -34,18 +27,16 @@ void initSeatCheck(bool** arr){
 		}
 	}
 }
-
 //Auth: Chris and Jacob
 int main() {
 	//Awesome logo display
 	spinner();
 	centerString(cout, "NOW WITH BASICLIB V0.2");
-
+	
 	//Declaring Variables
 	bool **seatCheck=new bool *[COLUMNS];
 	vector<Seat> unsoldSeats;
 	vector<Seat> soldSeats;
-	
 	
 	//Initializing Seat Array with appropriate prices
 	initSeatCheck(seatCheck);
@@ -65,12 +56,8 @@ int main() {
 			unsoldSeats.push_back(s);
 		}
 	}
-	
 	readInData(seatCheck, soldSeats, people); //Reading in data
-	
 	mainMenu(unsoldSeats,soldSeats,seatCheck); //Transferring control flow to main menu
-	
-	writeOutData(seatCheck, soldSeats); //Writing out reports and data at end of program
-	
+	writeOutData(seatCheck, soldSeats); //Writing out reports and data at end of program. 4 files total
 	return 0;
 }

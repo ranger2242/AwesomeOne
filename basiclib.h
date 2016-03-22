@@ -2,7 +2,7 @@
 // Created by Chris on 2/23/2016.
 //
 //"Basic library of reusable code for C++ labs written by Chris Cavazos."
-//basiclib ver 0.2!!!!!!!!!!!!!!!11
+//basiclib ver 0.2!!!!!!!!!!!!!!!
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -59,19 +59,16 @@ void spinner(){
 		counts[i]=0;
 	}
 		
-	
 	string temp="";
 		int c=0;
 		for(int i=0;i<27;i++){
 			for(int j=0;j<arr[i].length();j++){
-			
 			cout<<arr[i].at(j);
 			Sleep(1);
 		}
 		cout<<endl;
 	}
-			centerString(cout, "NOW WITH BASICLIB V0.2");
-		
+	centerString(cout, "NOW WITH BASICLIB V0.2");
 	Sleep(1000);
 	cls();
 	
@@ -88,8 +85,7 @@ void cls(){
 
 //Author: Jacob
 void pause()
-{
-	system("PAUSE");
+{	system("PAUSE");
 	system("CLS");
 }
 
